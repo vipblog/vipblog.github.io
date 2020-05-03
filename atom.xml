@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://ShineEternal-vercont.github.io</id>
+    <id>https://benblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-05-03T07:16:05.073Z</updated>
+    <updated>2020-05-03T07:55:25.033Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://ShineEternal-vercont.github.io"/>
-    <link rel="self" href="https://ShineEternal-vercont.github.io/atom.xml"/>
+    <link rel="alternate" href="https://benblog.github.io"/>
+    <link rel="self" href="https://benblog.github.io/atom.xml"/>
     <subtitle>一个由 SHineEternal 搭建的小站</subtitle>
-    <logo>https://ShineEternal-vercont.github.io/images/avatar.png</logo>
-    <icon>https://ShineEternal-vercont.github.io/favicon.ico</icon>
+    <logo>https://benblog.github.io/images/avatar.png</logo>
+    <icon>https://benblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
     <entry>
         <title type="html"><![CDATA[题解 AT5290 【[ABC165A] We Love Golf】]]></title>
-        <id>https://ShineEternal-vercont.github.io/post/ti-jie-at5290-abc165a-we-love-golf/</id>
-        <link href="https://ShineEternal-vercont.github.io/post/ti-jie-at5290-abc165a-we-love-golf/">
+        <id>https://benblog.github.io/post/ti-jie-at5290-abc165a-we-love-golf/</id>
+        <link href="https://benblog.github.io/post/ti-jie-at5290-abc165a-we-love-golf/">
         </link>
         <updated>2020-05-03T07:10:41.000Z</updated>
         <content type="html"><![CDATA[<h2 id="solution">🌲solution</h2>
@@ -46,8 +46,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello World！]]></title>
-        <id>https://ShineEternal-vercont.github.io/post/hello-world/</id>
-        <link href="https://ShineEternal-vercont.github.io/post/hello-world/">
+        <id>https://benblog.github.io/post/hello-world/</id>
+        <link href="https://benblog.github.io/post/hello-world/">
         </link>
         <updated>2020-05-02T13:57:29.000Z</updated>
         <content type="html"><![CDATA[<h1 id="1">1</h1>
@@ -56,8 +56,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://ShineEternal-vercont.github.io/post/hello-gridea/</id>
-        <link href="https://ShineEternal-vercont.github.io/post/hello-gridea/">
+        <id>https://benblog.github.io/post/hello-gridea/</id>
+        <link href="https://benblog.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
