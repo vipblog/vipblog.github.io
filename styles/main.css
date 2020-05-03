@@ -2080,6 +2080,10 @@ body {
         width: 960px;
         margin: 0 auto;
       }
+    
+    .post-body {
+      font-size: 16px !important
+    }
     body {
       color: #555;
     }
@@ -2106,12 +2110,12 @@ body {
     .node-title::before {
       background-color: #0b7285;
     }a {
-      color: #ffa94d;
+      color: #212529;
     }
     
     .next-md-body a, .friends-box a  {
-      color: #ffa94d;
-      border-bottom: 1px solid #ffa94d;
+      color: #212529;
+      border-bottom: 1px solid #212529;
     }a:hover {
       color: #222;
     }
@@ -2150,8 +2154,8 @@ body {
       transition-duration: 59s;
       transition-timing-function: cubic-bezier(.34,0,.84,1);
     }.markdownIt-TOC a {
-      color: #eee;
-      border-bottom-color: #eee;
+      color: #087f5b;
+      border-bottom-color: #087f5b;
     }.markdownIt-TOC a:hover {
       color: #fff;
       border-bottom-color: #fff;
