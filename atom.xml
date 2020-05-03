@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ShineEternal-vercont.github.io</id>
-    <title>ShineEternal的小站</title>
-    <updated>2020-05-03T03:46:04.015Z</updated>
+    <title>ShineEternal 的小站</title>
+    <updated>2020-05-03T04:04:40.092Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ShineEternal-vercont.github.io"/>
     <link rel="self" href="https://ShineEternal-vercont.github.io/atom.xml"/>
-    <subtitle>qaq</subtitle>
+    <subtitle>一个由 SHineEternal 搭建的小站</subtitle>
     <logo>https://ShineEternal-vercont.github.io/images/avatar.png</logo>
     <icon>https://ShineEternal-vercont.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, ShineEternal的小站</rights>
+    <rights>All rights reserved 2020, ShineEternal 的小站</rights>
     <entry>
         <title type="html"><![CDATA[Hello World！]]></title>
         <id>https://ShineEternal-vercont.github.io/post/hello-world/</id>
