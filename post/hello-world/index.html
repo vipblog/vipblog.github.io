@@ -9,7 +9,7 @@
 <meta name="description" content="一个由 SHineEternal 搭建的小站">
 <meta name="theme-color" content="#212529">
 <title>Hello World！ | ShineEternal 的小站</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1588575968476">
+<link rel="shortcut icon" href="/favicon.ico?v=1588576284195">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
 
@@ -208,6 +208,13 @@
     </div>
   </div>
   
+    
+      <div class="sidebar-item">
+        <span class="site-item-rss">
+            <i class="fa fa-rss"></i>
+            <a href="https://benblog.github.io/atom.xml" target="_blank">RSS</a>
+        </span>
+      </div>
     
   
   
@@ -1074,7 +1081,7 @@
   }
 
   // 链接跳转
-  let newWindow = 'false'
+  let newWindow = 'true'
   if (newWindow === 'true') {
     let links = document.querySelectorAll('.post-body a')
     links.forEach(item => {
