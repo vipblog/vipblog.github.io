@@ -2154,8 +2154,8 @@ body {
       transition-duration: 59s;
       transition-timing-function: cubic-bezier(.34,0,.84,1);
     }.markdownIt-TOC a {
-      color: #a61e4d;
-      border-bottom-color: #a61e4d;
+      color: #1864ab;
+      border-bottom-color: #1864ab;
     }.markdownIt-TOC a:hover {
       color: #fff;
       border-bottom-color: #fff;
