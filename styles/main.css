@@ -2066,7 +2066,9 @@ pre > span.copy-code:hover {
 .hljs-strong {
   font-weight: bold;
 }
-body {
+.bg-color .bg-color {
+      background: transparent !important;
+    }body {
       background-color: #f8f9fa;
     }
     .nav-toggle .line {
@@ -2094,7 +2096,7 @@ body {
       border-bottom-color: #555;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #343a40fe;
+      background: #343a407f;
     }h1, h2, h3, h4, h5, h6 {
       color: #0b7285;
     }
@@ -2138,11 +2140,11 @@ body {
       }.nav-item a:hover {
         color: #222;
       }.nav-item-active {
-      background: #adb5bdfe;
+      background: #adb5bd7f;
     }
 
     .nav-item:hover {
-      background: #adb5bdfe;
+      background: #adb5bd7f;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2178,7 +2180,7 @@ body {
       color: #fc6423;
       border-bottom-color: #fc6423;
     }.bg-color {
-      background-color: #f1f3f5fe;
+      background-color: #f1f3f57f;
     }
       .site-meta {
         background: #212529 !important;
@@ -2187,13 +2189,17 @@ body {
         background: #212529 !important;
       }
     .brand {
-      background: #212529fe;
+      background: #2125297f;
     }
-    .main-title, .brand {
+    
+      .brand {
+        font-weight: bold;
+        transform: scale(2.5);
+      }.main-title, .brand {
       color: #f8f9fa !important;
     }
     .mist .site-title i {
-      background: #f8f9fafe;
+      background: #f8f9fa7f;
     }.box-scale > #landlord {
       transform: scale(1);
     }.box-shadow-wrapper {
