@@ -2191,7 +2191,11 @@ pre > span.copy-code:hover {
     .brand {
       background: #212529cc;
     }
-    .main-title, .brand {
+    
+      .brand {
+        font-weight: bold;
+        transform: scale(1);
+      }.main-title, .brand {
       color: #f8f9fa !important;
     }
     .mist .site-title i {
