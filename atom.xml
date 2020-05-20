@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-05-20T11:08:08.393Z</updated>
+    <updated>2020-05-20T11:10:35.997Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -10,6 +10,123 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[量子力学杂谈]]></title>
+        <id>https://vipblog.github.io/post/liang-zi-li-xue-za-tan/</id>
+        <link href="https://vipblog.github.io/post/liang-zi-li-xue-za-tan/">
+        </link>
+        <updated>2020-05-20T11:09:08.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="part0引言"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>t</mi><mi mathvariant="normal">.</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">part.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord">0</span></span></span></span>：引言🤠：</h2>
+<p>薛定谔的猫，即为量子力学中最经典的一个例子。本篇日报就来讲解一下本实验以及量子力学相关内容</p>
+<figure data-type="image" tabindex="1"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4ubHVvZ3UuY29tLmNuL3VwbG9hZC9pbWFnZV9ob3N0aW5nLzNlMG1sb2hoLnBuZw?x-oss-process=image/format,png" alt="" loading="lazy"></figure>
+<h2 id="part1实验介绍"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>t</mi><mi mathvariant="normal">.</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">part.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord">1</span></span></span></span>：实验介绍：</h2>
+<h3 id="准备物品主要">准备物品（主要）：</h3>
+<ul>
+<li>
+<p>一只活着的猫。</p>
+</li>
+<li>
+<p>少量的镭：镭的衰变（会放出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>粒子），但是只知道它的半衰期（即原子核衰变一半所需要的时间），也就相当于我们只知道了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">\Delta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span></span></span></span>，而开始衰变的时间是不确定的</p>
+</li>
+<li>
+<p>氰化物：就是个用来毒猫的，装在一个瓶子里，瓶子被砸碎会导致猫被毒死</p>
+</li>
+<li>
+<p>锤子：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>粒子会触发电子机关，使锤子砸向装有氰化物的瓶子（保证砸碎）</p>
+</li>
+<li>
+<p>密闭容器：保证一旦释放毒气猫必死</p>
+</li>
+</ul>
+<h3 id="开始试验">开始试验：</h3>
+<p>将以上物品都装入密闭容器中（组装可见上图），镭衰变存在几率，也就是说猫的死也有一定的几率（根据物品栏的注释，相信这不难明白是为什么）</p>
+<p>而在量子力学中</p>
+<blockquote>
+<p>放射性的镭处于衰变和未衰变两种状态的叠加</p>
+</blockquote>
+<h4 id="这就导致了">这就导致了：</h4>
+<p>那只猫处于活猫和死猫两种状态的叠加！！！</p>
+<figure data-type="image" tabindex="2"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4ubHVvZ3UuY29tLmNuL3VwbG9hZC9pbWFnZV9ob3N0aW5nL2k1ZXd1ZjdsLnBuZw?x-oss-process=image/format,png" alt="" loading="lazy"></figure>
+<p><s>死去活来，强颜欢笑</s></p>
+<p>但是生活中的正常生物都不会有这种情况。</p>
+<p>由此，这个实验被称为<strong>量子力学的起源</strong></p>
+<h2 id="part2-量子力学"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>a</mi><mi>r</mi><mi>t</mi><mi mathvariant="normal">.</mi><mn>2</mn><mo>:</mo></mrow><annotation encoding="application/x-tex">part.2:</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span><span class="mord">.</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span></span></span></span> 量子力学</h2>
+<h3 id="概述">概述：</h3>
+<blockquote>
+<p>量子力学（Quantum Mechanics），为物理学理论，是研究物质世界微观粒子运动规律的物理学分支，主要研究原子、分子、凝聚态物质，以及原子核和基本粒子的结构、性质的基础理论。</p>
+</blockquote>
+<p><strong>它与相对论一起构成现代物理学的理论基础。</strong><s>现代物理学两大烧脑基础</s></p>
+<p>量子力学不仅是现代物理学的基础理论之一，而且在<strong>化学</strong>等学科和许多近代技术中得到广泛应用。</p>
+<h3 id="起因">起因：</h3>
+<blockquote>
+<p>19世纪末，人们发现旧有的经典理论无法解释微观系统，于是经由物理学家的努力，在20世纪初创立量子力学，解释了这些现象。</p>
+</blockquote>
+<h3 id="一些有趣的例子">一些有趣的例子</h3>
+<p>当然，量子力学博大精深，如果认真学的话会<s>吐血</s>深感其中的奥秘，所以以下介绍几个经典例子，可以更通俗的了解量子力学，而不会第一次就看到复杂的公式而打消兴趣。</p>
+<h3 id="eg1黑箱中的电子">e.g.1:黑箱中的电子</h3>
+<figure data-type="image" tabindex="3"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4ubHVvZ3UuY29tLmNuL3VwbG9hZC9pbWFnZV9ob3N0aW5nL2s1bGZjeGhzLnBuZw?x-oss-process=image/format,png" alt="" loading="lazy"></figure>
+<p>假设在一个不透明的箱子中有一个电子，如图</p>
+<p>但是其实是看不到它的具体位置。</p>
+<ul>
+<li>这时，我们根据<strong>哥本哈根</strong>的解释——在盒子中任何一处找到电子的机会是均等的。</li>
+</ul>
+<p>但是好像是个人都会这么想。</p>
+<p>换一种说法，就是伴随着电子的概率波均匀地分布在盒子中。</p>
+<hr>
+<p><strong>什么是概率波？</strong></p>
+<blockquote>
+<p>概率波 ，就是物质波，指空间中某点某时刻可能出现的几率。</p>
+</blockquote>
+<ul>
+<li>
+<p>自由电子：波函数就是行波，就是说它有可能出现在空间中任何一点，每点几率相等。</p>
+</li>
+<li>
+<p>如果被束缚在氢原子里，并且处于基态：它出现在空间任何一点都有可能，但是在<strong>波尔半径处几率最大</strong>。</p>
+</li>
+</ul>
+<p>举个形象的例子：你现在虽然坐在电脑前，但是也是有可能在火星上，不过只是概率特别小而不可能被观测到。</p>
+<p><strong>可以看做这个点未来可能移动的轨迹</strong></p>
+<hr>
+<p>现在，假设一块木板掉落在了盒子中间。</p>
+<p>此时黑箱被均匀的分割成两部分。</p>
+<p>根据常识，我们知道电子不是在这边就是在那边（电子很小不考虑切割）</p>
+<p>但是，<strong>哥本哈根</strong>又说了：概率波仍然均匀的分布在两端。</p>
+<p>也就是说在黑箱任意一侧都有相等的概率找到电子。</p>
+<p>但是，一旦一个人向里面看一眼（且看到了电子的位置），那么波函数就会发生坍塌。</p>
+<hr>
+<p><strong>波函数坍塌？</strong></p>
+<h4 id="我们可以将这个形象的认为是这个更靠谱">我们可以将这个形象的认为是（这个更靠谱）：</h4>
+<ul>
+<li>
+<p>一个人向空中抛了一个骰子</p>
+</li>
+<li>
+<p>骰子还未落地时，不知道点数的几率，这时就是一个波函数。</p>
+</li>
+<li>
+<p>骰子一落地就可以发现最终的结果，这时，就相当于波函数“坍塌”了。</p>
+</li>
+</ul>
+<h4 id="也可以这么理解">也可以这么理解：</h4>
+<p>好几个共同发展的概率波，一旦其中一个被观测到（被验证），其他几个就会下降（被观测的概率波为1了），此时就是坍塌。</p>
+<hr>
+<p>这时的电子就不再是以“概率”的形式体现，而是真实存在的了。</p>
+<p>此时，如果关闭箱子，停止观测，由于我们已经确认过电子的位置且有隔板，那么此时这对概率波就会立即填满电子所在的这一次。</p>
+<ul>
+<li>前面说了一个火星和电脑的比方，这里类比一下，还有极小的概率使得电子位于另一侧甚至在黑箱外，但是由于过小就被忽略了。</li>
+</ul>
+<h4 id="到这里实验大概结束了">到这里，实验大概结束了。</h4>
+<p>但是，一位物理学家鲍尔戴维斯又换了一种更简明的方法阐述这个实验。</p>
+<p>假设在隔板两侧分别有一个电子“幽灵”</p>
+<figure data-type="image" tabindex="4"><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9jZG4ubHVvZ3UuY29tLmNuL3VwbG9hZC9pbWFnZV9ob3N0aW5nL2ttc3BldzZpLnBuZw?x-oss-process=image/format,png" alt="" loading="lazy"></figure>
+<p>此时，只要有一个观察者看到<strong>任意一个</strong>，那么他就会变为真实的电子，<strong>同时</strong>另一个会消失。</p>
+<hr>
+<h4 id="哥本哈根">哥本哈根：</h4>
+<p>注意到上文中大量提到了哥本哈根，于是简介一下。</p>
+<p><s>因为在网上搜除了是个地名就是影片</s></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[AT5158 [AGC037A] Dividing a String 题解]]></title>
         <id>https://vipblog.github.io/post/at5158-agc037a-dividing-a-string-ti-jie/</id>
