@@ -2201,7 +2201,7 @@ pre > span.copy-code:hover {
     .mist .site-title i {
       background: #f8f9facc;
     }.box-scale > #landlord {
-      transform: scale(1);
+      transform: scale(0.5);
     }.box-shadow-wrapper {
       box-shadow: none !important;
     }body {
