@@ -1728,91 +1728,91 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 }
 
         .gt-bg-theme-color-first {
-          background: #e9ecef!important;
+          background: #e6eceb!important;
         }
         
         .gt-bg-theme-color-second {
-          background: #adb5bd!important;
+          background: #e6eceb!important;
         }
         
         .gt-bg-content-color-first {
-          background: #212529!important;
+          background: #727877!important;
         }
         
         .gt-bg-content-color-second {
-          background: #343a40!important;
+          background: #b3b9b8!important;
         }
         
         .gt-bg-accent-color-first {
-          background: #364fc7!important;
+          background: #65b687!important;
         }
         
         .gt-bg-accent-color-second {
-          background: RGBA(54,79,199,0.2)!important;
+          background: RGBA(101,182,135,0.14)!important;
         }
         
         .gt-c-theme-color-first {
-          color: #e9ecef!important;
+          color: #e6eceb!important;
         }
         
         .gt-c-theme-color-second {
-          color: #adb5bd!important;
+          color: #e6eceb!important;
         }
         
         .gt-c-content-color-first {
-          color: #212529!important;
+          color: #727877!important;
         }
         
         .gt-c-content-color-second {
-          color: #343a40!important;
+          color: #b3b9b8!important;
         }
         
         .gt-c-accent-color-first {
-          color: #364fc7!important;
+          color: #65b687!important;
         }
         
         .gt-c-accent-color-second {
-          color: RGBA(54,79,199,0.2)!important;
+          color: RGBA(101,182,135,0.14)!important;
         }
         
         body {
-          color: #212529!important;
+          color: #727877!important;
         }
         
         a {
-          color: #364fc7!important;
+          color: #65b687!important;
         }
         
         .post-content h1 {
           display: inline-block;
-          color: #212529!important;
+          color: #727877!important;
           position: relative!important;
-          background: linear-gradient(180deg, transparent 75%, RGBA(54,79,199,0.4) 0)!important;
+          background: linear-gradient(180deg, transparent 75%, RGBA(101,182,135,0.4) 0)!important;
         }
         
         .post-content h2 {
           display: inline-block;
-          color: #212529!important;
+          color: #727877!important;
           position: relative!important;
-          background: linear-gradient(180deg, transparent 75%, RGBA(54,79,199,0.4) 0)!important;
+          background: linear-gradient(180deg, transparent 75%, RGBA(101,182,135,0.4) 0)!important;
         }
         
         .gt-a-link {
-          color: #212529!important;
+          color: #727877!important;
           position: relative!important;
-          background: linear-gradient(180deg, transparent 75%, RGBA(54,79,199,0.4) 0)!important;
+          background: linear-gradient(180deg, transparent 75%, RGBA(101,182,135,0.4) 0)!important;
         }
         
         .gt-post-content a {
-          color: #364fc7!important;
+          color: #65b687!important;
         }
         
         .gt-post-content blockquote {
-          background: RGBA(54,79,199,0.2)!important;
-          border-color: #364fc7!important;
+          background: RGBA(101,182,135,0.14)!important;
+          border-color: #65b687!important;
         }
         
         .gt-post-content code {
-          background: RGBA(54,79,199,0.2)!important;
+          background: RGBA(101,182,135,0.14)!important;
         }
          
