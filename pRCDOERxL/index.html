@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="一个由 ShineEternal 搭建的小站！">
 <meta name="theme-color" content="#212529">
-<title>Hello World！ | ShineEternal 的小站</title>
+<title>CF1363B Subsequence Hate 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1591419916005">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -34,8 +34,8 @@
 
 
 
-  <meta name="description" content="Hello World！" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="CF1363B Subsequence Hate 题解" />
+  <meta name="keywords" content="题解" />
 </head>
 
 <body>
@@ -179,7 +179,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -227,6 +228,197 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#description">description：</a></li>
+<li><a href="#solution">solution：</a></li>
+<li><a href="#code">code：</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -314,8 +506,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://vipblog.github.io/hello-world/">
-      Hello World！
+    <a class="post-title-link" href="https://vipblog.github.io/pRCDOERxL/">
+      CF1363B Subsequence Hate 题解
     </a>
   </h1>
   <div class="post-meta">
@@ -323,23 +515,36 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-05-02</span>
+      <span>2020-06-06</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show">分类于</span>
+      
+      
+      <a href="https://vipblog.github.io/-RGFfDKxr/">
+        <span>题解</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>1<span class="pc-show">字数</span></span>
+      <span>228<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/hello-world/" data-flag-title="Hello World！" class="meta-item pc-show leancloud_visitors">
+    <span id="/pRCDOERxL/" data-flag-title="CF1363B Subsequence Hate 题解" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -348,7 +553,54 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <p>test</p>
+              <h2 id="description">description：</h2>
+<p>将一个 <code>01</code> 串变为不含 <code>010</code> 和 <code>101</code> 子串的字符串。</p>
+<h2 id="solution">solution：</h2>
+<p>仔细分析一下性质就可以发现，我们大部分情况下需要将整个字符串都变成 <code>0</code> 或 <code>1</code>。</p>
+<p>但是如果整个字符串中只有一个 <code>0/1</code>  在字符串的两端，那么情况也是合法的。</p>
+<p>所以我们只需要在变字符串的时候每次都更新一下两种数字的最小值就行了。</p>
+<p>其最小值就意为最小可以获取的步数。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		char s[1005];
+		int cnt1=0,cnt2=0;
+		scanf(&quot;%s&quot;,s);
+		for(int i=0;i&lt;strlen(s);i++)
+		{
+			if(s[i]=='0')
+			cnt1++;
+			else
+			cnt2++;
+		}
+		int ans=1000000;
+		for(int i=0;i&lt;strlen(s);i++)
+		{
+			ans=min(ans,min(cnt1,cnt2));
+			if(s[i]=='0')
+			{
+				cnt1--;
+				cnt2++;
+			}
+			else
+			{
+				cnt1++;
+				cnt2--;
+			}
+		}
+		printf(&quot;%d\n&quot;,ans);
+	}
+	return 0;
+} 
+</code></pre>
 
             </div>
             <div class="post-footer">
@@ -359,7 +611,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://vipblog.github.io/hello-world/" title="Hello World！">https://vipblog.github.io/hello-world/</a>
+      <a href="https://vipblog.github.io/pRCDOERxL/" title="CF1363B Subsequence Hate 题解">https://vipblog.github.io/pRCDOERxL/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -368,16 +620,18 @@
   </ul>
   <div class="tags">
     
+      <a href="https://vipblog.github.io/-RGFfDKxr/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="题解 AT5290 【[ABC165A] We Love Golf】" href="https://vipblog.github.io/ti-jie-at5290-abc165a-we-love-golf/">题解 AT5290 【[ABC165A] We Love Golf】</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="题解 AT5290 【[ABC165A] We Love Golf】" href="https://vipblog.github.io/ti-jie-at5290-abc165a-we-love-golf/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="量子力学杂谈" href="https://vipblog.github.io/liang-zi-li-xue-za-tan/">量子力学杂谈</a>
+        <a class="nav-mobile-next" title="量子力学杂谈" href="https://vipblog.github.io/liang-zi-li-xue-za-tan/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
