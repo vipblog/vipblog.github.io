@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-06T05:05:35.727Z</updated>
+    <updated>2020-06-06T09:16:27.360Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -10,6 +10,64 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[CF1363C Game On Leaves 题解]]></title>
+        <id>https://vipblog.github.io/yPNLqcRv7/</id>
+        <link href="https://vipblog.github.io/yPNLqcRv7/">
+        </link>
+        <updated>2020-06-06T09:07:13.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="description">description：</h2>
+<p>给定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个节点的无根树。</p>
+<p>两名选手轮流操作，每次可以选择一个叶节点并删除它以及所有和它相连的边。叶节点指度数不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的节点。删除节点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的选手胜利。</p>
+<p>你需要判断先手是否有必胜策略。</p>
+<h2 id="solution">solution：</h2>
+<p>首先观察到这道题的一个特判点：如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 刚开始就在叶子节点上，那么先手必然胜利。</p>
+<p>注意不要忘了一个小 feature：这棵树可能只有一个节点，所以特判时不能只判度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>那么如果不在呢？</p>
+<p>这时我们可以知道，与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 节点相连的边数一定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>≥</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\geq 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>。所以由于两个人都实行最优策略，所以到了仅剩下两条与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 相连的边时就只会开始拆其他的点。</p>
+<p>那么答案就只与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的奇偶性有关了。判断一下即可。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+int p[1005];
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		int a,b;
+		int n,x;
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;x);
+		memset(p,0,sizeof(p));
+		for(int i=1;i&lt;n;i++)
+		{
+			scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+			p[a]++;
+			p[b]++;
+		}
+		if(p[x]&lt;=1)
+		{
+			printf(&quot;Ayush\n&quot;);
+		}
+		else
+		{
+			if(n%2==1)
+			{
+				printf(&quot;Ashish\n&quot;);
+			}
+			else
+			{
+				printf(&quot;Ayush\n&quot;);
+			}
+		}
+	}
+	return 0;
+} 
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF1363B Subsequence Hate 题解]]></title>
         <id>https://vipblog.github.io/pRCDOERxL/</id>
