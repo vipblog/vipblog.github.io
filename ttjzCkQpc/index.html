@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gridea | ShineEternal 的小站</title>
+<title>UVA12372 Packing for Holiday 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591437220372">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -30,11 +30,11 @@
 
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <div class="main-content">
-        <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -83,51 +83,95 @@
         </div>
     </div>
 </nav>
-        <div class="current-tag-container">
-            <h2 class="title gt-c-content-color-first">
-                #Gridea
-            </h2>
-        </div>
-        <div class="post-list-container">
-    <div class="post-inner">
-        
-            <div class="post gt-bg-theme-color-second">
-                <div class="post-left">
-                    <div>
-                        
-                        <a href="https://vipblog.github.io/hello-gridea/">
-                            <span class="post-title gt-c-content-color-first">Hello Gridea</span>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    UVA12372 Packing for Holiday 题解
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-06-06 ·
+                    </time>
+                    
+                        <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
+                            # 题解
                         </a>
-                    </div>
-                    <div class="gt-post-content post-abstract gt-c-content-color-second">
-                        <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-                    </div>
-                    <div class="post-info">
-                        <time class="post-time gt-c-content-color-first">
-                            发布于 · 2018-12-12 ·
-                        </time>
-                        
-                            <a href="https://vipblog.github.io/uQZoRfPtf/" class="post-tag">
-                                # Gridea
-                            </a>
-                        
-                    </div>
+                    
                 </div>
-                
-                    <a href="https://vipblog.github.io/hello-gridea/" class="post-feature-image"
-                       style="background-image: url('https://vipblog.github.io/post-images/hello-gridea.png')">
-                    </a>
-                
+                <div class="post-content">
+                    <h2 id="description">description：</h2>
+<p>判断三个数是否都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如果都大于则输出 <code>bad</code>，否则输出 <code>good</code>。</p>
+<h2 id="solution">solution：</h2>
+<p>如题目描述。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	int cnt=0;
+	while(T--)
+	{
+		cnt++;
+		int a,b,c;
+		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
+		if(a&lt;=20&amp;&amp;b&lt;=20&amp;&amp;c&lt;=20)
+		{
+			printf(&quot;Case %d: good\n&quot;,cnt);
+		}
+		else
+		{
+			printf(&quot;Case %d: bad\n&quot;,cnt);
+		}
+	}
+	return 0;
+}
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://vipblog.github.io/yPNLqcRv7/" class="post-title gt-a-link">
+                    CF1363C Game On Leaves 题解
+                </a>
             </div>
         
-    </div>
-</div>
-        <div class="pagination-container">
-    
-    
-</div>
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'fbb919f4c8754e537b84',
+    clientSecret: 'c417fe5997b302139dfb56bdd4bb377f7788d38c',
+    repo: 'vipblog.github.io',
+    owner: 'vipblog',
+    admin: ['vipblog'],
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+            
+
+            
+        
+		
+		
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">一个由 ShineEternal 搭建的小站！</div>
