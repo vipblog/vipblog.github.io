@@ -2,11 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-06T09:53:44.581Z</updated>
+    <updated>2020-06-06T10:02:28.299Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
-    <subtitle>一个由 ShineEternal 搭建的小站！</subtitle>
+    <subtitle>一个由 ShineEternal 搭建的小站！
+
+&lt;br/&gt;
+
+如有任何问题请联系 QQ：3197301325</subtitle>
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
