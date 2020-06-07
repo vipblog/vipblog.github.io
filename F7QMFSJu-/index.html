@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>题解 AT5290 【[ABC165A] We Love Golf】 | ShineEternal 的小站</title>
+<title>CF1363E Tree Shuffling 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591523253553">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -87,44 +87,84 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    题解 AT5290 【[ABC165A] We Love Golf】
+                    CF1363E Tree Shuffling 题解
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-05-03 ·
+                        · 2020-06-07 ·
                     </time>
-                    
-                        <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
-                            # 题解
-                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <h2 id="solution">🌲solution</h2>
-<p>题目要求出在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[A,B]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">]</span></span></span></span> 区间内是否存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的倍数。</p>
-<p>由于观察到数据范围很小，所以直接循环枚举判断即可。</p>
-<p>如果有一个的话即输出 <code>OK</code> ，立即跳出程序，否则一直循环，直到找到一个。</p>
-<p>最终在循环外打印一个 <code>NG</code> ，表示没有。</p>
-<h2 id="code">🌷code</h2>
+                    <h2 id="description">description：</h2>
+<figure data-type="image" tabindex="1"><img src="https://vipblog.github.io/post-images/1591522797207.png" alt="" loading="lazy"></figure>
+<h2 id="solution">solution：</h2>
+<p>我们观察到这棵树的一个性质：一个节点可以完成某修改操作，那么它的祖先也可以完成。</p>
+<p>所以我们可以先优化题目的策略：遇到祖先节点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 值比子节点小的时候直接把子节点的值更新成这个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 即可。（效果上是相等的）</p>
+<p>优化完了之后直接 dp 即可。</p>
+<p>我们设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mn>0</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">]</span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 节点的子树中初始状态为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 且准备改为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的节点的个数。 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>u</mi><mo>]</mo><mo>[</mo><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[u][1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">u</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 同理。</p>
+<p>那么对于子树的更改我们就可以一步一步记录到祖先节点上，最终累加判断就行了。</p>
+<hr>
+<p>盘点自己的一个很小但找了很久的 bug：</p>
+<p>u 和 i 在键盘上离得太近导致在 i 的循环内错打为 u。</p>
+<h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
+//#include&lt;algorithm&gt;
+#include&lt;vector&gt;
 using namespace std;
+struct ben
+{
+	long long x,y,z;
+}a[200005];
+vector&lt;long long&gt;e[200005];
+long long ans;
+long long dp[200005][2];
+long long min(long long x,long long y)
+{
+	if(x&gt;y)return y;
+	return x;
+}
+void dfs(long long u,long long fa,long long sp)
+{
+	if(a[u].y!=a[u].z)
+	{
+		dp[u][a[u].y]=1;
+	}
+	for(int i=0;i&lt;e[u].size();i++)
+	{
+		int v=e[u][i];
+		if(v==fa)continue;
+		dfs(v,u,min(a[u].x,sp));
+		dp[u][0]+=dp[v][0];
+		dp[u][1]+=dp[v][1];
+	}
+	sp=min(sp,a[u].x);
+	long long sum=min(dp[u][0],dp[u][1]);
+	ans+=2*sum*sp;
+	dp[u][0]-=sum;
+	dp[u][1]-=sum;
+}
 int main()
 {
-	int k,a,b;
-	scanf(&quot;%d&quot;,&amp;k);
-	scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
-	for(int i=a;i&lt;=b;i++)
+	int n;
+	scanf(&quot;%d&quot;,&amp;n);
+	for(int i=1;i&lt;=n;i++)
 	{
-		if(i%k==0)
-		{
-			printf(&quot;OK\n&quot;);
-			return 0;
-		}
-	} 
-	printf(&quot;NG\n&quot;);
+		scanf(&quot;%d%d%d&quot;,&amp;a[i].x,&amp;a[i].y,&amp;a[i].z);
+	}
+	int u,v;
+	for(int i=1;i&lt;n;i++)
+	{
+		scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+		e[u].push_back(v);
+		e[v].push_back(u);
+	}
+	
+	dfs(1,-1,0x3f3f3f3f);
+	if(dp[1][0]||dp[1][1])ans=-1;
+	printf(&quot;%lld\n&quot;,ans);
 	return 0;
 } 
-
 </code></pre>
 
                 </div>
@@ -134,8 +174,8 @@ int main()
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/hello-world/" class="post-title gt-a-link">
-                    Hello World！
+                <a href="https://vipblog.github.io/ttjzCkQpc/" class="post-title gt-a-link">
+                    UVA12372 Packing for Holiday 题解
                 </a>
             </div>
         
