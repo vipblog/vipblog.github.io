@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-07T09:49:41.064Z</updated>
+    <updated>2020-06-08T11:14:26.499Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -14,6 +14,99 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[CF1365A Matrix Game 题解]]></title>
+        <id>https://vipblog.github.io/uvPUTnSVv/</id>
+        <link href="https://vipblog.github.io/uvPUTnSVv/">
+        </link>
+        <updated>2020-06-08T11:07:28.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="description">description：</h2>
+<ul>
+<li>
+<p>给定一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵，有一些格子是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，有一些格子是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
+</li>
+<li>
+<p>Ashish 和 Vivek 轮流往矩阵中放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。某个格子可以放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 当且仅当这个格子所在的行和列没有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+</li>
+<li>
+<p>最后无处放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的玩家就输了。你需要输出赢家的姓名。</p>
+</li>
+<li>
+<p>多组数据，数据组数不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">1\le n,m\le 50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>。</p>
+</li>
+<li>
+<p>translate by @<a href="https://www.luogu.com.cn/user/45475">ShineEternal</a>。</p>
+</li>
+</ul>
+<h2 id="solution">solution：</h2>
+<p>这道题目 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n,m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span></span></span></span> 的范围较小，所以直接模拟即可。</p>
+<p>由于先后顺序并没有影响，故按顺序添加就好。</p>
+<p>在添加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的时候记录下当前是谁走的。可以使用 <code>TUrn=(TUrn+1)%2;</code> 类似的标记器。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+int a[55][55];
+int x[55],y[55];
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		int n,m;
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+		memset(x,0,sizeof(x));
+		memset(y,0,sizeof(y));
+		for(int i=1;i&lt;=n;i++)
+		{
+			for(int j=1;j&lt;=m;j++)
+			{
+				scanf(&quot;%d&quot;,&amp;a[i][j]);
+				if(a[i][j]==1)
+				{
+					x[i]=1;
+					y[j]=1;
+				}
+			}
+		}
+		int TUrn=1;
+		for(int i=1;i&lt;=n;i++)
+		{
+			if(x[i]==0)
+			{
+				int flag=0;
+				//x[i]=1;
+				for(int j=1;j&lt;=m;j++)
+				{
+					if(y[j]==0)
+					{
+						y[j]=1;
+						flag=1;
+						break;
+					}
+				}
+				if(flag==1)
+				{
+					x[i]=1;
+					TUrn=(TUrn+1)%2;
+				}
+			}
+		}
+		if(TUrn==1)
+		{
+			printf(&quot;Vivek\n&quot;);
+		}
+		else
+		{
+			printf(&quot;Ashish\n&quot;);
+		}
+	}
+	return 0;
+} 
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF1363E Tree Shuffling 题解]]></title>
         <id>https://vipblog.github.io/F7QMFSJu-/</id>
@@ -1281,15 +1374,6 @@ int main()
 } 
 
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello World！]]></title>
-        <id>https://vipblog.github.io/hello-world/</id>
-        <link href="https://vipblog.github.io/hello-world/">
-        </link>
-        <updated>2020-05-02T13:57:29.000Z</updated>
-        <content type="html"><![CDATA[<p>test</p>
 ]]></content>
     </entry>
 </feed>
