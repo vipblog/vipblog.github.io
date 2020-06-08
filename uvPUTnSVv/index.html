@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CF1365A Matrix Game 题解 | ShineEternal 的小站</title>
-<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591614983390">
+<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591615199761">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -126,6 +126,9 @@
 <p>这道题目 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n,m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span></span></span></span> 的范围较小，所以直接模拟即可。</p>
 <p>由于先后顺序并没有影响，故按顺序添加就好。</p>
 <p>在添加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的时候记录下当前是谁走的。可以使用 <code>TUrn=(TUrn+1)%2;</code> 类似的标记器。</p>
+<hr>
+<p>update soon：</p>
+<p>突然发现其实取出空行和空列的最小值判断奇偶性就行了。</p>
 <h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
 #include&lt;cstring&gt;
