@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CF1365C Rotation Matching 题解 | ShineEternal 的小站</title>
-<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591624288601">
+<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591624510025">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -138,7 +138,7 @@ int max(int x,int y)
 	if(x&gt;y)return x;
 	return y;
 }
-int a[200005],b[200005],dis[200005],mp[200005];
+int a[200005],b[200005],dis[200005],mp0[200005],mp[200005];
 int main()
 {
 	int n;
@@ -146,7 +146,7 @@ int main()
 	for(int i=1;i&lt;=n;i++)
 	{
 		scanf(&quot;%d&quot;,&amp;a[i]);
-		mp[a[i]]=i;
+		mp0[a[i]]=i;
 	}
 	for(int i=1;i&lt;=n;i++)
 	{
@@ -155,7 +155,7 @@ int main()
 	}
 	for(int i=1;i&lt;=n;i++)
 	{
-		dis[(n+a[i]-mp[i])%n]++;
+		dis[(n+mp0[i]-mp[i])%n]++;
 	}
 	int ans=0;
 	for(int i=1;i&lt;=n;i++)

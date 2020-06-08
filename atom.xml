@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-08T13:51:30.918Z</updated>
+    <updated>2020-06-08T13:55:12.300Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -54,7 +54,7 @@ int max(int x,int y)
 	if(x&gt;y)return x;
 	return y;
 }
-int a[200005],b[200005],dis[200005],mp[200005];
+int a[200005],b[200005],dis[200005],mp0[200005],mp[200005];
 int main()
 {
 	int n;
@@ -62,7 +62,7 @@ int main()
 	for(int i=1;i&lt;=n;i++)
 	{
 		scanf(&quot;%d&quot;,&amp;a[i]);
-		mp[a[i]]=i;
+		mp0[a[i]]=i;
 	}
 	for(int i=1;i&lt;=n;i++)
 	{
@@ -71,7 +71,7 @@ int main()
 	}
 	for(int i=1;i&lt;=n;i++)
 	{
-		dis[(n+a[i]-mp[i])%n]++;
+		dis[(n+mp0[i]-mp[i])%n]++;
 	}
 	int ans=0;
 	for(int i=1;i&lt;=n;i++)
