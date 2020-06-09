@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CF1365A Matrix Game 题解 | ShineEternal 的小站</title>
+<title>CF1365E Maximum Subsequence Value 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591710487547">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -87,11 +87,11 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    CF1365A Matrix Game 题解
+                    CF1365E Maximum Subsequence Value 题解
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-08 ·
+                        · 2020-06-09 ·
                     </time>
                     
                         <a href="https://vipblog.github.io/jAJ7f0J6U/" class="post-tags">
@@ -105,90 +105,46 @@
                 </div>
                 <div class="post-content">
                     <h2 id="description">description：</h2>
-<ul>
-<li>
-<p>给定一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵，有一些格子是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，有一些格子是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
-</li>
-<li>
-<p>Ashish 和 Vivek 轮流往矩阵中放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。某个格子可以放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 当且仅当这个格子所在的行和列没有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
-</li>
-<li>
-<p>最后无处放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的玩家就输了。你需要输出赢家的姓名。</p>
-</li>
-<li>
-<p>多组数据，数据组数不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">1\le n,m\le 50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span>。</p>
-</li>
-<li>
-<p>translate by @<a href="https://www.luogu.com.cn/user/45475">ShineEternal</a>。</p>
-</li>
-</ul>
+<figure data-type="image" tabindex="1"><img src="https://vipblog.github.io/post-images/1591709941589.jpg" alt="" loading="lazy"></figure>
 <h2 id="solution">solution：</h2>
-<p>这道题目 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n,m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span></span></span></span> 的范围较小，所以直接模拟即可。</p>
-<p>由于先后顺序并没有影响，故按顺序添加就好。</p>
-<p>在添加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的时候记录下当前是谁走的。可以使用 <code>TUrn=(TUrn+1)%2;</code> 类似的标记器。</p>
-<hr>
-<p>update soon：</p>
-<p>突然发现其实取出空行和空列的最小值判断奇偶性就行了。</p>
+<p>这道题目刚开始乍一看并无思路（包括但不限于我太菜），不过仔细分析一下，我们可以<strong>贪心的只选择三个数</strong>。</p>
+<p>为什么选择三个数一定是最优的呢？（当然如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n=1/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 的时候分别选 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 个)</p>
+<p>我们观察题意，一个十分必要的制约条件是 不少于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo><mrow><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>−</mo><mn>2</mn></mrow></mrow><annotation encoding="application/x-tex">\max{1,k-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span></span></span> 个数的某一位相同。</p>
+<p>那么当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 时就成了互不干扰的情况，而如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&gt;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k&gt;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 就需要保证两个甚至更多的数字某一位相同。</p>
+<p>这样的话，比起选择多个数，我们要保障第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 位的贡献能够得到的同时完全可以选择更少的含有这一位的数。（因为要得到这一位的贡献就需要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个数凑起来，而如果要凑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个某一位相同的数完全可以只留下其中一个数。</p>
 <h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
 using namespace std;
-int a[55][55];
-int x[55],y[55];
+long long a[505];
+long long max(long long x,long long y)
+{
+	if(x&lt;y)return y;
+	return x;
+}
 int main()
 {
-	int T;
-	scanf(&quot;%d&quot;,&amp;T);
-	while(T--)
+	int n;
+	scanf(&quot;%d&quot;,&amp;n);
+	long long ans=0;
+	for(int i=1;i&lt;=n;i++)
 	{
-		int n,m;
-		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-		memset(x,0,sizeof(x));
-		memset(y,0,sizeof(y));
-		for(int i=1;i&lt;=n;i++)
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		for(int j=i+1;j&lt;=n;j++)
 		{
-			for(int j=1;j&lt;=m;j++)
+			for(int k=j+1;k&lt;=n;k++)
 			{
-				scanf(&quot;%d&quot;,&amp;a[i][j]);
-				if(a[i][j]==1)
-				{
-					x[i]=1;
-					y[j]=1;
-				}
+				ans=max(ans,a[i]|a[j]|a[k]);
 			}
-		}
-		int TUrn=1;
-		for(int i=1;i&lt;=n;i++)
-		{
-			if(x[i]==0)
-			{
-				int flag=0;
-				//x[i]=1;
-				for(int j=1;j&lt;=m;j++)
-				{
-					if(y[j]==0)
-					{
-						y[j]=1;
-						flag=1;
-						break;
-					}
-				}
-				if(flag==1)
-				{
-					x[i]=1;
-					TUrn=(TUrn+1)%2;
-				}
-			}
-		}
-		if(TUrn==1)
-		{
-			printf(&quot;Vivek\n&quot;);
-		}
-		else
-		{
-			printf(&quot;Ashish\n&quot;);
 		}
 	}
+	if(n&gt;=3)printf(&quot;%lld\n&quot;,ans);
+	else
+	if(n==2)printf(&quot;%lld\n&quot;,a[1]|a[2]);
+	else
+	printf(&quot;%lld\n&quot;,a[1]);
 	return 0;
 } 
 </code></pre>
@@ -200,8 +156,8 @@ int main()
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/F7QMFSJu-/" class="post-title gt-a-link">
-                    CF1363E Tree Shuffling 题解
+                <a href="https://vipblog.github.io/o5EvDo1aI/" class="post-title gt-a-link">
+                    CF1365D Solve The Maze 题解
                 </a>
             </div>
         

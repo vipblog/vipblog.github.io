@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>题解 AT5290 【[ABC165A] We Love Golf】 | ShineEternal 的小站</title>
+<title>题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591710487547">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -30,11 +30,11 @@
 
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -83,92 +83,51 @@
         </div>
     </div>
 </nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    题解 AT5290 【[ABC165A] We Love Golf】
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-05-03 ·
-                    </time>
-                    
-                        <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
-                            # 题解
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <h2 id="solution">🌲solution</h2>
-<p>题目要求出在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[A,B]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">]</span></span></span></span> 区间内是否存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的倍数。</p>
-<p>由于观察到数据范围很小，所以直接循环枚举判断即可。</p>
-<p>如果有一个的话即输出 <code>OK</code> ，立即跳出程序，否则一直循环，直到找到一个。</p>
-<p>最终在循环外打印一个 <code>NG</code> ，表示没有。</p>
-<h2 id="code">🌷code</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-using namespace std;
-int main()
-{
-	int k,a,b;
-	scanf(&quot;%d&quot;,&amp;k);
-	scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
-	for(int i=a;i&lt;=b;i++)
-	{
-		if(i%k==0)
-		{
-			printf(&quot;OK\n&quot;);
-			return 0;
-		}
-	} 
-	printf(&quot;NG\n&quot;);
-	return 0;
-} 
-
-</code></pre>
-
-                </div>
-            </article>
+        <div class="current-tag-container">
+            <h2 class="title gt-c-content-color-first">
+                #题解
+            </h2>
         </div>
-
+        <div class="post-list-container">
+    <div class="post-inner">
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/hello-world/" class="post-title gt-a-link">
-                    Hello World！
-                </a>
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://vipblog.github.io/ti-jie-at5290-abc165a-we-love-golf/">
+                            <span class="post-title gt-c-content-color-first">题解 AT5290 【[ABC165A] We Love Golf】</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2020-05-03 ·
+                        </time>
+                        
+                            <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tag">
+                                # 题解
+                            </a>
+                        
+                    </div>
+                </div>
+                
+                    <a href="https://vipblog.github.io/ti-jie-at5290-abc165a-we-love-golf/" class="post-feature-image"
+                       style="background-image: url('https://cdn.luogu.com.cn/upload/image_hosting/8kxxh46e.png')">
+                    </a>
+                
             </div>
         
-
-        
-            
-                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: 'fbb919f4c8754e537b84',
-    clientSecret: 'c417fe5997b302139dfb56bdd4bb377f7788d38c',
-    repo: 'vipblog.github.io',
-    owner: 'vipblog',
-    admin: ['vipblog'],
-    id: location.pathname,      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-            
-
-            
-        
-		
-		
+    </div>
+</div>
+        <div class="pagination-container">
+    
+        <a href="https://vipblog.github.io/-RGFfDKxr" class="prev-page gt-a-link">上一页</a>
+    
+    
+</div>
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">一个由 ShineEternal 搭建的小站！
