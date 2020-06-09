@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>UVA12372 Packing for Holiday 题解 | ShineEternal 的小站</title>
+<title>CF1365D Solve The Maze 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591703873149">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -87,12 +87,16 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    UVA12372 Packing for Holiday 题解
+                    CF1365D Solve The Maze 题解
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-06 ·
+                        · 2020-06-09 ·
                     </time>
+                    
+                        <a href="https://vipblog.github.io/jAJ7f0J6U/" class="post-tags">
+                            # codeforces
+                        </a>
                     
                         <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
                             # 题解
@@ -101,33 +105,98 @@
                 </div>
                 <div class="post-content">
                     <h2 id="description">description：</h2>
-<p>判断三个数是否都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如果都大于则输出 <code>bad</code>，否则输出 <code>good</code>。</p>
+<p>求能否在一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵中设置一些墙使得所有好人都能到达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(n,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，而所有坏人都不能。</p>
 <h2 id="solution">solution：</h2>
-<p>如题目描述。</p>
+<p>我们只需要判断每个好人能否在不经过坏人的情况下到达终点即可（如果在途中与坏人相邻则同样不能到达）。</p>
+<p>有一个剪枝就是将连在一起的好人仅保留一个而其他都看做空地，可减少 dfs 的次数。</p>
 <h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;iostream&gt;
 using namespace std;
-int main()
+char a[55][55];
+int sx[5]={0,-1,1,0,0};
+int sy[5]={0,0,0,-1,1};
+int vis[55][55];
+int n,m;
+int dfs(int xx,int yy)
 {
-	int T;
-	scanf(&quot;%d&quot;,&amp;T);
-	int cnt=0;
-	while(T--)
+	for(int i=1;i&lt;=4;i++)
 	{
-		cnt++;
-		int a,b,c;
-		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
-		if(a&lt;=20&amp;&amp;b&lt;=20&amp;&amp;c&lt;=20)
+		int x=xx+sx[i];
+		int y=yy+sy[i];
+		if(a[x][y]=='B')
 		{
-			printf(&quot;Case %d: good\n&quot;,cnt);
+			return 0;
 		}
-		else
+	}
+	if(xx==n&amp;&amp;yy==m)return 1;
+	for(int i=1;i&lt;=4;i++)
+	{
+		int x=xx+sx[i];
+		int y=yy+sy[i];
+		if(vis[x][y]==0&amp;&amp;(a[x][y]=='G'||a[x][y]=='.'))
 		{
-			printf(&quot;Case %d: bad\n&quot;,cnt);
+			vis[x][y]=1;
+			if(dfs(x,y))
+			{
+				vis[x][y]=0;
+				return 1;
+			}
 		}
 	}
 	return 0;
 }
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+		for(int i=1;i&lt;=n;i++)
+		{
+			for(int j=1;j&lt;=m;j++)
+			{
+				cin&gt;&gt;a[i][j];
+			}
+		}
+		int flag=0;
+		for(int i=1;i&lt;=n;i++)
+		{
+			for(int j=1;j&lt;=m;j++)
+			{
+				if(a[i][j]=='G')
+				{
+					if(a[i][j-1]=='G'||a[i][j+1]=='G'||a[i-1][j]=='G'||a[i+1][j]=='G')
+					{
+						if(a[i][j-1]!='B'&amp;&amp;a[i][j+1]!='B'&amp;&amp;a[i-1][j]!='B'&amp;&amp;a[i+1][j]!='B')
+						{
+							a[i][j]='.';
+							continue;
+						}
+					}
+					memset(vis,0,sizeof(vis));
+					
+					if(dfs(i,j)==0)
+					{
+						printf(&quot;No\n&quot;);
+						flag=1;
+						break;
+					}
+				}
+				
+			}
+			if(flag==1)
+				break;
+		}
+		if(flag==0)
+		{
+			printf(&quot;Yes\n&quot;);
+		}
+	}
+	return 0;
+} 
 </code></pre>
 
                 </div>
@@ -137,8 +206,8 @@ int main()
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/yPNLqcRv7/" class="post-title gt-a-link">
-                    CF1363C Game On Leaves 题解
+                <a href="https://vipblog.github.io/oPwX6bNsk/" class="post-title gt-a-link">
+                    CF1365C Rotation Matching 题解
                 </a>
             </div>
         
