@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-10T12:37:58.935Z</updated>
+    <updated>2020-06-10T12:39:54.219Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -15,7 +15,7 @@
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
     <entry>
-        <title type="html"><![CDATA[CF1365F Swaps Again]]></title>
+        <title type="html"><![CDATA[CF1365F Swaps Again 题解]]></title>
         <id>https://vipblog.github.io/fFLyfTS-c/</id>
         <link href="https://vipblog.github.io/fFLyfTS-c/">
         </link>
