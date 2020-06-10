@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AT5158 [AGC037A] Dividing a String 题解 | ShineEternal 的小站</title>
+<title>CF1365F Swaps Again | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591792675063">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -87,12 +87,16 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    AT5158 [AGC037A] Dividing a String 题解
+                    CF1365F Swaps Again
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-05-20 ·
+                        · 2020-06-10 ·
                     </time>
+                    
+                        <a href="https://vipblog.github.io/jAJ7f0J6U/" class="post-tags">
+                            # codeforces
+                        </a>
                     
                         <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
                             # 题解
@@ -100,44 +104,64 @@
                     
                 </div>
                 <div class="post-content">
-                    <h2 id="description">😇description</h2>
-<ul>
-<li>
-<p>给定一个字符串 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>，请你找出一个最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，使得将这个字符串划分成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 段后能够保证相邻的两段不相同。</p>
-</li>
-<li>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi mathvariant="normal">∣</mi><mi>S</mi><mi mathvariant="normal">∣</mi><mo>≤</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">1\le |S| \le 2\times 10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>，且保证 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 串内均为小写字母。</p>
-</li>
-<li>
-<p>translate by @<a href="https://www.luogu.com.cn/user/45475">ShineEternal</a>。</p>
-</li>
-</ul>
-<h2 id="solution">solution</h2>
-<p>我们贪心的进行划分，每次遇到一个和上一次不一样的串就可以单独提取出来一次了。</p>
-<h2 id="code">code</h2>
+                    <h2 id="description">description：</h2>
+<p>把一个数字串进行若干次前缀与对应长度的后缀交换位置的操作，问是否能够变成另一个字符串。</p>
+<h2 id="solution">solution：</h2>
+<p>观察 swap 时的性质：任意一对原本在对称位置的数在 swap 后仍然会保持对称。</p>
+<p>因为交换 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 长度的前缀也就会对应 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 长度的后缀，一组对称位置的数永远会要么同时互换位置，要不都不变。</p>
+<p>这样就简化了题目，我们考虑把每一组对称数的位置都存到一个 map 中，直接 check 对数上是否对等即可。</p>
+<h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;cstring&gt;
+#include&lt;map&gt;
+#include&lt;algorithm&gt; 
 using namespace std;
-char s[200005];
+int a[505],b[505];
+map&lt;pair&lt;int,int&gt;,int&gt;mp;
 int main()
 {
-	int cnt=0;
-	scanf(&quot;%s&quot;,&amp;s);
-	int n=strlen(s);
-	string a=&quot;&quot;,b=&quot;&quot;;
-	for(int i=0;i&lt;n;i++)
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
 	{
-		a+=s[i];
-		if(a!=b)
+        mp.clear();
+		int n;
+		scanf(&quot;%d&quot;,&amp;n);
+		for(int i=1;i&lt;=n;i++)
 		{
-			b=a;
-			cnt++;
-			a=&quot;&quot;;
+			scanf(&quot;%d&quot;,&amp;a[i]);
+		}
+		for(int i=1;i&lt;=n;i++)
+		{
+			scanf(&quot;%d&quot;,&amp;b[i]);
+		}
+		if(n%2==1&amp;&amp;a[(n+1)/2]!=b[(n+1)/2])
+		{
+			printf(&quot;NO\n&quot;);
+			continue;
+		}
+		for(int i=1;i&lt;=(n+1)/2;i++)
+		{
+			mp[make_pair(min(a[i],a[n-i+1]),max(a[i],a[n-i+1]))]++;
+		}
+		int flag=0;
+		for(int i=1;i&lt;=(n+2)/2;i++)
+		{
+			//mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]--;
+			if(--mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]&lt;0)
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1)
+		{
+			printf(&quot;No\n&quot;);
+		}
+		else
+		{
+			printf(&quot;Yes\n&quot;);
 		}
 	}
-	printf(&quot;%d\n&quot;,cnt);
 	return 0;
 } 
 </code></pre>
@@ -149,8 +173,8 @@ int main()
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/shu-lun-xiao-bai-du-neng-kan-dong-de-shu-xue-qi-wang-jiang-jie/" class="post-title gt-a-link">
-                    数论小白都能看懂的数学期望讲解
+                <a href="https://vipblog.github.io/Q26F2-_0P/" class="post-title gt-a-link">
+                    CF1365E Maximum Subsequence Value 题解
                 </a>
             </div>
         
