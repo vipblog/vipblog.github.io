@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-10T12:39:54.219Z</updated>
+    <updated>2020-06-11T12:19:47.024Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -14,6 +14,68 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[CF1362B Johnny and His Hobbies 题解]]></title>
+        <id>https://vipblog.github.io/_caeP72oh/</id>
+        <link href="https://vipblog.github.io/_caeP72oh/">
+        </link>
+        <updated>2020-06-11T12:12:51.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="description">description：</h2>
+<p>给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字，让找出最小的正整数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，使得这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字异或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 之后，还是这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字。（顺序不一定要相同</p>
+<h2 id="solution">solution：</h2>
+<p>观察到数据范围并不大，故直接枚举 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∼</mo><mn>1024</mn></mrow><annotation encoding="application/x-tex">1\sim 1024</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span></span></span></span>，可以在输入的时候就预处理出来每一种异或结果然后分别排序。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int b[1030][1030],a[1030];
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		int n;
+		scanf(&quot;%d&quot;,&amp;n);
+		for(int i=1;i&lt;=n;i++)
+		{
+			scanf(&quot;%d&quot;,&amp;a[i]);
+			for(int j=1;j&lt;=1024;j++)
+			{
+				b[j][i]=a[i]^j;
+			}
+		}
+		for(int i=1;i&lt;=1024;i++)
+		{
+			sort(b[i]+1,b[i]+n+1);
+		}
+		sort(a+1,a+n+1);
+		int tag=0;
+		for(int i=1;i&lt;=1024;i++)
+		{
+			int flag=0;
+			for(int j=1;j&lt;=n;j++)
+			{
+				if(b[i][j]!=a[j])
+				{
+					flag=1;
+					break;
+				}
+			}
+			if(flag==0)
+			{
+				printf(&quot;%d\n&quot;,i);
+				tag=1;
+				break;
+			}
+		}
+		if(tag==0)printf(&quot;-1\n&quot;);
+	}
+	return 0;
+} 
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF1365F Swaps Again 题解]]></title>
         <id>https://vipblog.github.io/fFLyfTS-c/</id>
@@ -651,62 +713,6 @@ int main()
 				printf(&quot;Ayush\n&quot;);
 			}
 		}
-	}
-	return 0;
-} 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF1363B Subsequence Hate 题解]]></title>
-        <id>https://vipblog.github.io/pRCDOERxL/</id>
-        <link href="https://vipblog.github.io/pRCDOERxL/">
-        </link>
-        <updated>2020-06-06T05:00:08.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="description">description：</h2>
-<p>将一个 <code>01</code> 串变为不含 <code>010</code> 和 <code>101</code> 子串的字符串。</p>
-<h2 id="solution">solution：</h2>
-<p>仔细分析一下性质就可以发现，我们大部分情况下需要将整个字符串都变成 <code>0</code> 或 <code>1</code>。</p>
-<p>但是如果整个字符串中只有一个 <code>0/1</code>  在字符串的两端，那么情况也是合法的。</p>
-<p>所以我们只需要在变字符串的时候每次都更新一下两种数字的最小值就行了。</p>
-<p>其最小值就意为最小可以获取的步数。</p>
-<h2 id="code">code：</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-int main()
-{
-	int T;
-	scanf(&quot;%d&quot;,&amp;T);
-	while(T--)
-	{
-		char s[1005];
-		int cnt1=0,cnt2=0;
-		scanf(&quot;%s&quot;,s);
-		for(int i=0;i&lt;strlen(s);i++)
-		{
-			if(s[i]=='0')
-			cnt1++;
-			else
-			cnt2++;
-		}
-		int ans=1000000;
-		for(int i=0;i&lt;strlen(s);i++)
-		{
-			ans=min(ans,min(cnt1,cnt2));
-			if(s[i]=='0')
-			{
-				cnt1--;
-				cnt2++;
-			}
-			else
-			{
-				cnt1++;
-				cnt2--;
-			}
-		}
-		printf(&quot;%d\n&quot;,ans);
 	}
 	return 0;
 } 

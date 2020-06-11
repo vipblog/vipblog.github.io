@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>UVA12372 Packing for Holiday 题解 | ShineEternal 的小站</title>
+<title>CF1362B Johnny and His Hobbies 题解 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591877974605">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
@@ -87,12 +87,16 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    UVA12372 Packing for Holiday 题解
+                    CF1362B Johnny and His Hobbies 题解
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-06-06 ·
+                        · 2020-06-11 ·
                     </time>
+                    
+                        <a href="https://vipblog.github.io/jAJ7f0J6U/" class="post-tags">
+                            # codeforces
+                        </a>
                     
                         <a href="https://vipblog.github.io/-RGFfDKxr/" class="post-tags">
                             # 题解
@@ -101,33 +105,58 @@
                 </div>
                 <div class="post-content">
                     <h2 id="description">description：</h2>
-<p>判断三个数是否都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如果都大于则输出 <code>bad</code>，否则输出 <code>good</code>。</p>
+<p>给出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字，让找出最小的正整数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，使得这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字异或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 之后，还是这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数字。（顺序不一定要相同</p>
 <h2 id="solution">solution：</h2>
-<p>如题目描述。</p>
+<p>观察到数据范围并不大，故直接枚举 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∼</mo><mn>1024</mn></mrow><annotation encoding="application/x-tex">1\sim 1024</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">2</span><span class="mord">4</span></span></span></span>，可以在输入的时候就预处理出来每一种异或结果然后分别排序。</p>
 <h2 id="code">code：</h2>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
 using namespace std;
+int b[1030][1030],a[1030];
 int main()
 {
 	int T;
 	scanf(&quot;%d&quot;,&amp;T);
-	int cnt=0;
 	while(T--)
 	{
-		cnt++;
-		int a,b,c;
-		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
-		if(a&lt;=20&amp;&amp;b&lt;=20&amp;&amp;c&lt;=20)
+		int n;
+		scanf(&quot;%d&quot;,&amp;n);
+		for(int i=1;i&lt;=n;i++)
 		{
-			printf(&quot;Case %d: good\n&quot;,cnt);
+			scanf(&quot;%d&quot;,&amp;a[i]);
+			for(int j=1;j&lt;=1024;j++)
+			{
+				b[j][i]=a[i]^j;
+			}
 		}
-		else
+		for(int i=1;i&lt;=1024;i++)
 		{
-			printf(&quot;Case %d: bad\n&quot;,cnt);
+			sort(b[i]+1,b[i]+n+1);
 		}
+		sort(a+1,a+n+1);
+		int tag=0;
+		for(int i=1;i&lt;=1024;i++)
+		{
+			int flag=0;
+			for(int j=1;j&lt;=n;j++)
+			{
+				if(b[i][j]!=a[j])
+				{
+					flag=1;
+					break;
+				}
+			}
+			if(flag==0)
+			{
+				printf(&quot;%d\n&quot;,i);
+				tag=1;
+				break;
+			}
+		}
+		if(tag==0)printf(&quot;-1\n&quot;);
 	}
 	return 0;
-}
+} 
 </code></pre>
 
                 </div>
@@ -137,8 +166,8 @@ int main()
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://vipblog.github.io/yPNLqcRv7/" class="post-title gt-a-link">
-                    CF1363C Game On Leaves 题解
+                <a href="https://vipblog.github.io/fFLyfTS-c/" class="post-title gt-a-link">
+                    CF1365F Swaps Again 题解
                 </a>
             </div>
         
