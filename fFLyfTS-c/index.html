@@ -4,7 +4,7 @@
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CF1365F Swaps Again 题解 | ShineEternal 的小站</title>
-<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591877974605">
+<link rel="shortcut icon" href="https://vipblog.github.io/favicon.ico?v=1591880640974">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://vipblog.github.io/styles/main.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -136,7 +136,7 @@ int main()
 		}
 		if(n%2==1&amp;&amp;a[(n+1)/2]!=b[(n+1)/2])
 		{
-			printf(&quot;NO\n&quot;);
+			printf(&quot;No\n&quot;);
 			continue;
 		}
 		for(int i=1;i&lt;=(n+1)/2;i++)
@@ -144,7 +144,7 @@ int main()
 			mp[make_pair(min(a[i],a[n-i+1]),max(a[i],a[n-i+1]))]++;
 		}
 		int flag=0;
-		for(int i=1;i&lt;=(n+2)/2;i++)
+		for(int i=1;i&lt;=(n+1)/2;i++)
 		{
 			//mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]--;
 			if(--mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]&lt;0)

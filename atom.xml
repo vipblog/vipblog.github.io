@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-11T12:19:47.024Z</updated>
+    <updated>2020-06-11T13:04:03.576Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -114,7 +114,7 @@ int main()
 		}
 		if(n%2==1&amp;&amp;a[(n+1)/2]!=b[(n+1)/2])
 		{
-			printf(&quot;NO\n&quot;);
+			printf(&quot;No\n&quot;);
 			continue;
 		}
 		for(int i=1;i&lt;=(n+1)/2;i++)
@@ -122,7 +122,7 @@ int main()
 			mp[make_pair(min(a[i],a[n-i+1]),max(a[i],a[n-i+1]))]++;
 		}
 		int flag=0;
-		for(int i=1;i&lt;=(n+2)/2;i++)
+		for(int i=1;i&lt;=(n+1)/2;i++)
 		{
 			//mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]--;
 			if(--mp[make_pair(min(b[i],b[n-i+1]),max(b[i],b[n-i+1]))]&lt;0)
