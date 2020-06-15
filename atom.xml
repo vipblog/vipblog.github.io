@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-06-13T22:30:47.558Z</updated>
+    <updated>2020-06-15T11:35:41.817Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -14,6 +14,50 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[AtCoder ABC170 D - Not Divisible 题解]]></title>
+        <id>https://vipblog.github.io/yjQwrIZ40/</id>
+        <link href="https://vipblog.github.io/yjQwrIZ40/">
+        </link>
+        <updated>2020-06-15T11:30:13.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="httpsatcoderjpcontestsabc170tasksabc170_d">https://atcoder.jp/contests/abc170/tasks/abc170_d</h4>
+<h2 id="description">description：</h2>
+<p>求出一个数列中有多少数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext></mrow><annotation encoding="application/x-tex">\bmod</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mspace" style="margin-right:0.05555555555555555em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span></span> 数列中其他任何位置的数都不等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。</p>
+<h2 id="solution">solution：</h2>
+<p>观察到直接 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 暴力枚举会超时，那么不妨先对数列进行排序，然后对于每一个数，均枚举倍数直至 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">a_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。这样的话就能优化时间复杂度。</p>
+<h2 id="code">code：</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int a[200005],b[1000005];
+int main()
+{
+	int n;
+	scanf(&quot;%d&quot;,&amp;n);
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%d&quot;,&amp;a[i]);
+	}
+	sort(a+1,a+n+1);
+	for(int i=1;i&lt;=n;i++)
+	{
+		for(int j=a[i];j&lt;=a[n];j+=a[i])
+		{
+			b[j]++;
+		}
+	}
+	int ans=0;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(b[a[i]]==1)
+		ans++;
+	}
+	printf(&quot;%d\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[P2335 [SDOI2005]位图 题解]]></title>
         <id>https://vipblog.github.io/PzZ3xYQBd/</id>
@@ -709,43 +753,6 @@ int main()
 	printf(&quot;%lld\n&quot;,ans);
 	return 0;
 } 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[UVA12372 Packing for Holiday 题解]]></title>
-        <id>https://vipblog.github.io/ttjzCkQpc/</id>
-        <link href="https://vipblog.github.io/ttjzCkQpc/">
-        </link>
-        <updated>2020-06-06T09:52:17.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="description">description：</h2>
-<p>判断三个数是否都大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>20</mn></mrow><annotation encoding="application/x-tex">20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如果都大于则输出 <code>bad</code>，否则输出 <code>good</code>。</p>
-<h2 id="solution">solution：</h2>
-<p>如题目描述。</p>
-<h2 id="code">code：</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-using namespace std;
-int main()
-{
-	int T;
-	scanf(&quot;%d&quot;,&amp;T);
-	int cnt=0;
-	while(T--)
-	{
-		cnt++;
-		int a,b,c;
-		scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);
-		if(a&lt;=20&amp;&amp;b&lt;=20&amp;&amp;c&lt;=20)
-		{
-			printf(&quot;Case %d: good\n&quot;,cnt);
-		}
-		else
-		{
-			printf(&quot;Case %d: bad\n&quot;,cnt);
-		}
-	}
-	return 0;
-}
 </code></pre>
 ]]></content>
     </entry>
