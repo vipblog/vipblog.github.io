@@ -12,7 +12,7 @@
 
 如有任何问题请联系 QQ：3197301325，也同时欢迎各位神仙前来交流~">
 <meta name="theme-color" content="#212529">
-<title>CF1389A LCM Problem 题解 | ShineEternal 的小站</title>
+<title>2020年男人八题赛后订正与总结 | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1599987288653">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -38,8 +38,8 @@
 
 
 
-  <meta name="description" content="CF1389A LCM Problem 题解" />
-  <meta name="keywords" content="codeforces,题解" />
+  <meta name="description" content="2020年男人八题赛后订正与总结" />
+  <meta name="keywords" content="ezoj,题解" />
 </head>
 
 <body>
@@ -183,7 +183,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -261,6 +262,223 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#a-2020%E7%94%B7%E4%BA%BA%E5%85%AB%E9%A2%98%E7%A4%BC%E7%89%A9">A. 【2020男人八题】礼物</a>
+<ul>
+<li><a href="#%E8%80%83%E5%9C%BA%E4%BB%A3%E7%A0%81100pts">考场代码：（100pts）</a></li>
+</ul>
+</li>
+<li><a href="#b-2020%E7%94%B7%E4%BA%BA%E5%85%AB%E9%A2%98%E5%BA%8F%E5%88%97">B. 【2020男人八题】序列</a>
+<ul>
+<li><a href="#%E8%80%83%E5%9C%BA%E4%BB%A3%E7%A0%8140pts">考场代码：（40pts）</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3100pts">赛后订正：（100pts）</a></li>
+<li><a href="#c-2020%E7%94%B7%E4%BA%BA%E5%85%AB%E9%A2%98%E6%B4%AA%E6%B0%B4">C. 【2020男人八题】洪水</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%810pts">赛时代码：(0pts)</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A310pts">赛后订正：（10pts）</a></li>
+</ul>
+</li>
+<li><a href="#d-2020%E7%94%B7%E4%BA%BA%E5%85%AB%E9%A2%98%E5%BE%AA%E7%8E%AF">D、 【2020男人八题】循环</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%813pts">赛时代码：（3pts）</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3100pts-2">赛后订正：(100pts)</a></li>
+</ul>
+</li>
+<li><a href="#e-2020%E7%94%B7%E4%BA%BA%E5%85%AB%E9%A2%98%E5%88%87%E5%89%B2%E7%9F%A9%E5%BD%A2">E. 【2020男人八题】切割矩形</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%8130pts">赛时代码：(30pts)</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3100pts-3">赛后订正：(100pts)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -348,8 +566,8 @@
           <div class="section bg-color post post-page">
             <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://vipblog.github.io/CF1389A/">
-      CF1389A LCM Problem 题解
+    <a class="post-title-link" href="https://vipblog.github.io/maneight/">
+      2020年男人八题赛后订正与总结
     </a>
   </h1>
   <div class="post-meta">
@@ -357,7 +575,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-08-01</span>
+      <span>2020-09-13</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -366,8 +584,8 @@
       <span class="pc-show">分类于</span>
       
       
-      <a href="https://vipblog.github.io/jAJ7f0J6U/">
-        <span>codeforces</span>
+      <a href="https://vipblog.github.io/xoWMCthSc/">
+        <span>ezoj</span>
       </a>、
       
       
@@ -382,17 +600,17 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>12分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>90<span class="pc-show">字数</span></span>
+      <span>2073<span class="pc-show">字数</span></span>
     </span>
     
     
     
-    <span id="/CF1389A/" data-flag-title="CF1389A LCM Problem 题解" class="meta-item pc-show leancloud_visitors">
+    <span id="/maneight/" data-flag-title="2020年男人八题赛后订正与总结" class="meta-item pc-show leancloud_visitors">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-eye"></i>
       <span>浏览量：<span class="leancloud-visitors-count"></span></span>
@@ -401,29 +619,532 @@
   </div>
 </header>
             <div class="post-body next-md-body" id="post_body">
-              <p>发现最优的情况就是一个数是另一个数的两倍，所以直接判断这种情况是否成立即可。</p>
+              <h2 id="a-2020男人八题礼物">A. 【2020男人八题】礼物</h2>
+<h3 id="考场代码100pts">考场代码：（100pts）</h3>
 <pre><code class="language-cpp">#include&lt;cstdio&gt;
 using namespace std;
+long long Mod=1000000007;
+int main()
+{
+	long long n,m;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);
+	long long NN=n*(n-1)/2;
+	long long MM=m*(m-1)/2;
+	printf(&quot;%lld\n&quot;,((NN%Mod)*(MM%Mod)%Mod));
+	return 0;
+}
+</code></pre>
+<p>这道题目考察 long long 的相关问题，注意随时取模就好了，考场上找规律大概 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">15min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span></span></span></span> 才写好。算是挺签到的题目。</p>
+<h2 id="b-2020男人八题序列">B. 【2020男人八题】序列</h2>
+<h3 id="考场代码40pts">考场代码：（40pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long a[100005],b[100005],c[100005];
+long long Abs(long long x)
+{
+	if(x&lt;0)return -x;
+	return x;
+}
+int main()
+{
+	long long n,S;
+	long long sum=0;
+	long long dif=0;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;S);
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+		sum+=a[i];
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;b[i]);
+	}
+	if(sum&lt;S)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long cnt=0;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(b[i]&lt;=a[i])
+		{
+			c[i]=b[i];
+		}
+		else
+		{
+			c[i]=a[i];
+			dif+=Abs(c[i]-b[i]);
+		}
+		cnt+=c[i];
+	}
+	if(cnt==S)
+	{
+		printf(&quot;%lld\n&quot;,dif);
+		for(int i=1;i&lt;=n;i++)
+		{
+			printf(&quot;%lld &quot;,c[i]);
+		}
+		printf(&quot;\n&quot;);
+		return 0;
+	}
+	dif=0;
+	if(cnt&lt;S)
+	for(int i=1;i&lt;=n;i++)
+	{
+		long long tmp=a[i]-c[i];
+		if(c[i]&lt;a[i])
+		{
+			if(S-cnt&gt;tmp)
+			{
+				c[i]=a[i];
+				dif+=Abs(c[i]-b[i]);
+				cnt+=tmp;
+			}
+			else
+			{
+				c[i]+=S-cnt;
+				dif+=Abs(c[i]-b[i]);
+				cnt=S;
+			}
+		}
+		if(cnt==S)
+		{
+			printf(&quot;%lld\n&quot;,dif);
+			for(int i=1;i&lt;=n;i++)
+			{
+				printf(&quot;%lld &quot;,c[i]);
+			}
+			printf(&quot;\n&quot;);
+			return 0;
+		}
+		
+	}
+	dif=0;
+	for(int i=1;i&lt;=n;i++)
+	{
+		int tmp=c[i];
+		if(c[i]&lt;a[i])
+		{
+			if(cnt-S&gt;tmp)
+			{
+				c[i]=0;
+				dif+=Abs(c[i]-b[i]);
+				cnt-=tmp;
+			}
+			else
+			{
+				c[i]-=cnt-S;
+				dif+=Abs(c[i]-b[i]);
+				cnt=S;
+			}
+		}
+		if(cnt==S)
+		{
+			printf(&quot;%lld\n&quot;,dif);
+			for(int i=1;i&lt;=n;i++)
+			{
+				printf(&quot;%lld &quot;,c[i]);
+			}
+			printf(&quot;\n&quot;);
+			return 0;
+		}
+		
+	}
+	printf(&quot;-1\n&quot;);
+	return 0;
+} 
+</code></pre>
+<h2 id="赛后订正100pts">赛后订正：（100pts）</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long a[100005],b[100005],c[100005];
+long long abs(long long x)
+{
+	if(x&lt;0)return -x;
+	return x; 
+}
+int main()
+{
+	long long n,S;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;S);
+	long long sum=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+		sum+=a[i];
+	}
+	long long cnt=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;b[i]);
+		if(b[i]&gt;a[i])
+		{
+			c[i]=a[i];
+		}
+		else
+		c[i]=b[i];
+		cnt+=c[i];
+	}
+	if(sum&lt;S)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long flag=0; 
+	for(long long i=1;i&lt;=n;i++)
+	{
+		
+		long long del;
+		if(cnt&gt;S)
+		{
+			del=cnt-S;
+			if(del&lt;c[i])
+			{
+				c[i]=c[i]-del;
+				flag=1;
+				break;
+			}
+			else
+			{
+				cnt-=c[i];
+				c[i]=0;
+			}
+		}
+		if(cnt&lt;S)
+		{
+			del=S-cnt;
+			if(del&lt;a[i]-c[i])
+			{
+				c[i]+=del;
+				flag=1;
+				break;
+			}
+			else
+			{
+				cnt+=a[i]-c[i];
+				c[i]=a[i];
+			}
+		}
+		if(cnt==S)
+		{
+			flag=1;
+			break;
+		}
+	}
+	if(flag==0)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long res=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		res+=abs(c[i]-b[i]);
+	}
+	printf(&quot;%lld\n&quot;,res);
+	for(long long i=1;i&lt;=n;i++)
+	{
+		printf(&quot;%lld &quot;,c[i]);
+	}
+	printf(&quot;\n&quot;);
+	return 0;
+}
+</code></pre>
+<p>考场上对于两种分情况的讨论头脑有些混沌了，导致犯了一些本不该犯的错误。</p>
+<p>以后还是应该一边写一边在旁边注释一下，理清思路。</p>
+<p>原来的时候在初始化 c 数组之后，修正的过程中直接计算答案了，就会导致一些本可以避免的错误。</p>
+<p>这种答案的统计因为时间复杂度不高，所以类似的题目处理时最好最后统一搞。</p>
+<h2 id="c-2020男人八题洪水">C. 【2020男人八题】洪水</h2>
+<h3 id="赛时代码0pts">赛时代码：(0pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	long long x,y;
+}a[10005];
+long long cmp(const ben &amp;a,const ben &amp;b)
+{
+	if(a.x==b.x)return a.y&lt;b.y;
+	return a.x&lt;b.x;
+}
+long long Abs(long long qaq)
+{
+	if(qaq&lt;0)return -qaq;
+	return qaq;
+}
+long long Max(long long qwq,long long qvq)
+{
+	if(qwq&gt;qvq)return qwq;
+	return qvq;
+}
+long long Min(long long qwq,long long qvq)
+{
+	if(qwq&lt;qvq)return qwq;
+	return qvq;
+}
+long long x[10005],y[10005];
+int main()
+{
+	long long W,H,n;
+	scanf(&quot;%lld%lld%lld&quot;,&amp;W,&amp;H,&amp;n);
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld%lld&quot;,&amp;a[i].x,&amp;a[i].y);
+	} 
+	//sort(a+1,a+n+1,cmp);
+	long long ans=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		long long tmp=2147483640000000;
+		for(long long j=1;j&lt;=n;j++)
+		{
+			if(i==j)continue;
+			long long midx=(a[i].x+a[j].x)/2;
+			long long midy=(a[i].y+a[j].y)/2;
+			tmp=Min(tmp,Abs(midx-Min(a[i].x,a[j].x))+Abs(midy-Min(a[i].y,a[j].y)));
+			//prlong longf(&quot;tmp=%d\n&quot;,tmp);
+			//tmp=Min(tmp,zc);
+			//prlong longf(&quot;zc=%d\n&quot;,zc);
+		}
+		//prlong longf(&quot;tmp=%d\n&quot;,tmp);
+		if(tmp==2147483640000000)continue;//差点这句话就把等于写成了赋值。。。。。 
+		ans=Max(ans,tmp);  
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正10pts">赛后订正：（10pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	int x,y;
+}a[10005];
+struct qwq
+{
+	int ls,g;
+}d[10005];
+int mp[10005];
+int Abs(int x)
+{
+	if(x&lt;0)return -x;
+	return x; 
+}
+int ba[10005];
+int main()
+{
+	int W,H,n;
+	scanf(&quot;%d%d%d&quot;,&amp;W,&amp;H,&amp;n);
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%d%d&quot;,&amp;a[i].x,&amp;a[i].y);
+		d[i].g=0;
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(d[i].g!=0)continue;
+		int tmp=2147483640,tag;
+		for(int j=i+1;j&lt;=n;j++)
+		{
+			if((Abs(a[j].x-a[i].x)+Abs(a[j].y-a[i].y))/2&lt;tmp)
+			{
+				tmp=(Abs(a[j].x-a[i].x)+Abs(a[j].y-a[i].y))/2;
+				tag=j;
+			}	
+		}
+		d[i].ls=tmp;
+		d[i].g=tag;
+		d[tag].ls=tmp;
+		d[tag].g=i;
+	}
+	ba[1]=1;
+	int cnt=1;
+	mp[1]=1;
+	int ans=0;
+	while(cnt&lt;n)
+	{
+		int mina=2147483640;
+		int taga;
+		for(int i=1;i&lt;=cnt;i++) 
+		{
+			
+			if(d[ba[i]].ls&lt;mina)
+			{
+				if(mp[d[ba[i]].g]==1)continue;
+				mina=d[ba[i]].ls;
+				taga=d[ba[i]].g;
+			}
+		}
+		mp[taga]=1;
+		ba[++cnt]=taga;
+		if(mina!=2147483640)
+		ans=max(ans,mina);
+	}
+	printf(&quot;%d\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>考场上几乎把所有的错误想法都想过了一遍，最终摸索每一种错解之后走到了类似最小生成树的做法，但因打开方式不对，曼哈顿距离处理挂了</p>
+<p>这道题目不能直接贪心，要用最小生成树的思想连边。赛时想到了类似的想法，但在曼哈顿距离上处理挂了。</p>
+<h2 id="d-2020男人八题循环">D、 【2020男人八题】循环</h2>
+<h3 id="赛时代码3pts">赛时代码：（3pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int Mod=998244353;
+long long a[21];
+int main()
+{
+	long long p;
+	scanf(&quot;%lld&quot;,&amp;p);
+	int n=10;
+	for(int i=0;i&lt;n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+	}
+	if(p==3)
+	{
+		long long tmp=a[3]+a[6];
+		printf(&quot;%lld\n&quot;,tmp%Mod);
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="赛后订正100pts-2">赛后订正：(100pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int mod=998244353;
+long long a[15]; 
+bool tag[1000005];
+long long xs[1000005];
+int main()
+{
+	long long n,cnt=0,ans=0,x;
+	scanf(&quot;%lld&quot;,&amp;n);
+	for(int i=0;i&lt;=9;i++) 
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+	}
+	for(int i=1;i&lt;n;i++)
+	{
+	    if(tag[i]==0)
+	    {
+			int tmp=0;
+			cnt++;
+	    	x=i;
+		    xs[cnt]=1;
+		    while(1) 
+		    {
+				tag[x]=1;
+			    tmp++;
+			    xs[cnt]=xs[cnt]*a[x*10/n]%mod;
+			    x=x*10%n;
+			    if(x==i) 
+					break;
+		    }
+		    xs[cnt]=xs[cnt]*tmp%mod;
+		    ans=(ans+xs[cnt])%mod;
+	    }
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>赛时只考虑了样例的情况，因为没有琢磨透循环节所以只草率的写了极少的部分分。其实即使是骗分的暴力也还是很可做，本应多骗些分。</p>
+<h2 id="e-2020男人八题切割矩形">E. 【2020男人八题】切割矩形</h2>
+<h3 id="赛时代码30pts">赛时代码：(30pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+long long Max(long long qwq,long long qvq)
+{
+	if(qwq&gt;qvq)return qwq;
+	return qvq;
+}
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	long long a,b;
+	while(T--)
+	{
+		scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);
+		long long x1=a,x2=b,y1=b,y2=b;
+		long long ans=0;
+		while(x1!=y1)
+		{
+			if(x1&gt;y1)
+			{
+				long long tmp=x1-(x1/y1)*y1;
+				if(tmp&lt;1)
+				{
+					ans-=(1-tmp)/y1;
+				}
+			ans+=x1/y1;
+			
+			x1=Max(tmp,1);
+			}
+			else
+			{
+				long long z=x1;
+				x1=y1;
+				y1=z;
+			}
+			//printf(&quot;%lld %lld\n&quot;,x1,y1);
+		}
+		printf(&quot;%lld 114514\n&quot;,ans);
+	}
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正100pts-3">赛后订正：(100pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int mod=1000000007;
+long long res1,res2;
+long long ksm(long long a,long long b)
+{
+	long long tmp=1;
+	for(;b;b/=2,a=a*a%mod)
+	{
+		if(b%2==1)
+		{
+			tmp=tmp*a%mod;
+		}
+	}
+	return tmp;
+}
+void gcd_ex(long long a,long long b)
+{
+	if(b==1)
+	{
+		res1=a-1;
+		res2=0;
+		return ;
+	}
+	gcd_ex(b,a%b);
+	res2=(ksm(2,res1)-res2-1+mod)%mod;
+	res1+=a/b;
+}
 int main()
 {
 	int T;
 	scanf(&quot;%d&quot;,&amp;T);
 	while(T--)
 	{
-		int l,r;
-		scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
-		if(l*2&lt;=r)
-		{
-			printf(&quot;%d %d\n&quot;,l,2*l);
-		}
-		else
-		{
-			printf(&quot;-1 -1\n&quot;);
-		} 
-	} 
+		long long a,b;
+		scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);
+		gcd_ex(a,b);
+		printf(&quot;%lld %lld\n&quot;,res1,(ksm(2,res1-1)-res2+mod)%mod);
+	}
 	return 0;
-} 
+}
 </code></pre>
+<p>这道题在比赛时写了第一个空的解法，看出其和辗转相除法相似的本质，得到了30pts，对整场比赛的个人得分来说算是比较成功的暴力，但没有像初中探究题一样推下去找到第二问的规律比较可惜。</p>
 
             </div>
             <div class="post-footer">
@@ -434,7 +1155,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://vipblog.github.io/CF1389A/" title="CF1389A LCM Problem 题解">https://vipblog.github.io/CF1389A/</a>
+      <a href="https://vipblog.github.io/maneight/" title="2020年男人八题赛后订正与总结">https://vipblog.github.io/maneight/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -443,7 +1164,7 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://vipblog.github.io/jAJ7f0J6U/"># codeforces</a>
+      <a href="https://vipblog.github.io/xoWMCthSc/"># ezoj</a>
     
       <a href="https://vipblog.github.io/-RGFfDKxr/"># 题解</a>
     
@@ -451,15 +1172,11 @@ int main()
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="2020年男人八题赛后订正与总结" href="https://vipblog.github.io/maneight/">2020年男人八题赛后订正与总结</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="2020年男人八题赛后订正与总结" href="https://vipblog.github.io/maneight/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="数学题目整理" href="https://vipblog.github.io/EPVYTew70/">数学题目整理</a>
-        <a class="nav-mobile-next" title="数学题目整理" href="https://vipblog.github.io/EPVYTew70/">下一篇</a>
+        <a class="nav-pc-next" title="CF1389A LCM Problem 题解" href="https://vipblog.github.io/CF1389A/">CF1389A LCM Problem 题解</a>
+        <a class="nav-mobile-next" title="CF1389A LCM Problem 题解" href="https://vipblog.github.io/CF1389A/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

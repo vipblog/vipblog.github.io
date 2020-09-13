@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-08-01T05:50:12.952Z</updated>
+    <updated>2020-09-13T08:54:54.271Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -14,6 +14,540 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[2020年男人八题赛后订正与总结]]></title>
+        <id>https://vipblog.github.io/maneight/</id>
+        <link href="https://vipblog.github.io/maneight/">
+        </link>
+        <updated>2020-09-13T08:53:51.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="a-2020男人八题礼物">A. 【2020男人八题】礼物</h2>
+<h3 id="考场代码100pts">考场代码：（100pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long Mod=1000000007;
+int main()
+{
+	long long n,m;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);
+	long long NN=n*(n-1)/2;
+	long long MM=m*(m-1)/2;
+	printf(&quot;%lld\n&quot;,((NN%Mod)*(MM%Mod)%Mod));
+	return 0;
+}
+</code></pre>
+<p>这道题目考察 long long 的相关问题，注意随时取模就好了，考场上找规律大概 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>15</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">15min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span></span></span></span> 才写好。算是挺签到的题目。</p>
+<h2 id="b-2020男人八题序列">B. 【2020男人八题】序列</h2>
+<h3 id="考场代码40pts">考场代码：（40pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long a[100005],b[100005],c[100005];
+long long Abs(long long x)
+{
+	if(x&lt;0)return -x;
+	return x;
+}
+int main()
+{
+	long long n,S;
+	long long sum=0;
+	long long dif=0;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;S);
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+		sum+=a[i];
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;b[i]);
+	}
+	if(sum&lt;S)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long cnt=0;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(b[i]&lt;=a[i])
+		{
+			c[i]=b[i];
+		}
+		else
+		{
+			c[i]=a[i];
+			dif+=Abs(c[i]-b[i]);
+		}
+		cnt+=c[i];
+	}
+	if(cnt==S)
+	{
+		printf(&quot;%lld\n&quot;,dif);
+		for(int i=1;i&lt;=n;i++)
+		{
+			printf(&quot;%lld &quot;,c[i]);
+		}
+		printf(&quot;\n&quot;);
+		return 0;
+	}
+	dif=0;
+	if(cnt&lt;S)
+	for(int i=1;i&lt;=n;i++)
+	{
+		long long tmp=a[i]-c[i];
+		if(c[i]&lt;a[i])
+		{
+			if(S-cnt&gt;tmp)
+			{
+				c[i]=a[i];
+				dif+=Abs(c[i]-b[i]);
+				cnt+=tmp;
+			}
+			else
+			{
+				c[i]+=S-cnt;
+				dif+=Abs(c[i]-b[i]);
+				cnt=S;
+			}
+		}
+		if(cnt==S)
+		{
+			printf(&quot;%lld\n&quot;,dif);
+			for(int i=1;i&lt;=n;i++)
+			{
+				printf(&quot;%lld &quot;,c[i]);
+			}
+			printf(&quot;\n&quot;);
+			return 0;
+		}
+		
+	}
+	dif=0;
+	for(int i=1;i&lt;=n;i++)
+	{
+		int tmp=c[i];
+		if(c[i]&lt;a[i])
+		{
+			if(cnt-S&gt;tmp)
+			{
+				c[i]=0;
+				dif+=Abs(c[i]-b[i]);
+				cnt-=tmp;
+			}
+			else
+			{
+				c[i]-=cnt-S;
+				dif+=Abs(c[i]-b[i]);
+				cnt=S;
+			}
+		}
+		if(cnt==S)
+		{
+			printf(&quot;%lld\n&quot;,dif);
+			for(int i=1;i&lt;=n;i++)
+			{
+				printf(&quot;%lld &quot;,c[i]);
+			}
+			printf(&quot;\n&quot;);
+			return 0;
+		}
+		
+	}
+	printf(&quot;-1\n&quot;);
+	return 0;
+} 
+</code></pre>
+<h2 id="赛后订正100pts">赛后订正：（100pts）</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long a[100005],b[100005],c[100005];
+long long abs(long long x)
+{
+	if(x&lt;0)return -x;
+	return x; 
+}
+int main()
+{
+	long long n,S;
+	scanf(&quot;%lld%lld&quot;,&amp;n,&amp;S);
+	long long sum=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+		sum+=a[i];
+	}
+	long long cnt=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;b[i]);
+		if(b[i]&gt;a[i])
+		{
+			c[i]=a[i];
+		}
+		else
+		c[i]=b[i];
+		cnt+=c[i];
+	}
+	if(sum&lt;S)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long flag=0; 
+	for(long long i=1;i&lt;=n;i++)
+	{
+		
+		long long del;
+		if(cnt&gt;S)
+		{
+			del=cnt-S;
+			if(del&lt;c[i])
+			{
+				c[i]=c[i]-del;
+				flag=1;
+				break;
+			}
+			else
+			{
+				cnt-=c[i];
+				c[i]=0;
+			}
+		}
+		if(cnt&lt;S)
+		{
+			del=S-cnt;
+			if(del&lt;a[i]-c[i])
+			{
+				c[i]+=del;
+				flag=1;
+				break;
+			}
+			else
+			{
+				cnt+=a[i]-c[i];
+				c[i]=a[i];
+			}
+		}
+		if(cnt==S)
+		{
+			flag=1;
+			break;
+		}
+	}
+	if(flag==0)
+	{
+		printf(&quot;-1\n&quot;);
+		return 0;
+	}
+	long long res=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		res+=abs(c[i]-b[i]);
+	}
+	printf(&quot;%lld\n&quot;,res);
+	for(long long i=1;i&lt;=n;i++)
+	{
+		printf(&quot;%lld &quot;,c[i]);
+	}
+	printf(&quot;\n&quot;);
+	return 0;
+}
+</code></pre>
+<p>考场上对于两种分情况的讨论头脑有些混沌了，导致犯了一些本不该犯的错误。</p>
+<p>以后还是应该一边写一边在旁边注释一下，理清思路。</p>
+<p>原来的时候在初始化 c 数组之后，修正的过程中直接计算答案了，就会导致一些本可以避免的错误。</p>
+<p>这种答案的统计因为时间复杂度不高，所以类似的题目处理时最好最后统一搞。</p>
+<h2 id="c-2020男人八题洪水">C. 【2020男人八题】洪水</h2>
+<h3 id="赛时代码0pts">赛时代码：(0pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	long long x,y;
+}a[10005];
+long long cmp(const ben &amp;a,const ben &amp;b)
+{
+	if(a.x==b.x)return a.y&lt;b.y;
+	return a.x&lt;b.x;
+}
+long long Abs(long long qaq)
+{
+	if(qaq&lt;0)return -qaq;
+	return qaq;
+}
+long long Max(long long qwq,long long qvq)
+{
+	if(qwq&gt;qvq)return qwq;
+	return qvq;
+}
+long long Min(long long qwq,long long qvq)
+{
+	if(qwq&lt;qvq)return qwq;
+	return qvq;
+}
+long long x[10005],y[10005];
+int main()
+{
+	long long W,H,n;
+	scanf(&quot;%lld%lld%lld&quot;,&amp;W,&amp;H,&amp;n);
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld%lld&quot;,&amp;a[i].x,&amp;a[i].y);
+	} 
+	//sort(a+1,a+n+1,cmp);
+	long long ans=0;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		long long tmp=2147483640000000;
+		for(long long j=1;j&lt;=n;j++)
+		{
+			if(i==j)continue;
+			long long midx=(a[i].x+a[j].x)/2;
+			long long midy=(a[i].y+a[j].y)/2;
+			tmp=Min(tmp,Abs(midx-Min(a[i].x,a[j].x))+Abs(midy-Min(a[i].y,a[j].y)));
+			//prlong longf(&quot;tmp=%d\n&quot;,tmp);
+			//tmp=Min(tmp,zc);
+			//prlong longf(&quot;zc=%d\n&quot;,zc);
+		}
+		//prlong longf(&quot;tmp=%d\n&quot;,tmp);
+		if(tmp==2147483640000000)continue;//差点这句话就把等于写成了赋值。。。。。 
+		ans=Max(ans,tmp);  
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正10pts">赛后订正：（10pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	int x,y;
+}a[10005];
+struct qwq
+{
+	int ls,g;
+}d[10005];
+int mp[10005];
+int Abs(int x)
+{
+	if(x&lt;0)return -x;
+	return x; 
+}
+int ba[10005];
+int main()
+{
+	int W,H,n;
+	scanf(&quot;%d%d%d&quot;,&amp;W,&amp;H,&amp;n);
+	for(int i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%d%d&quot;,&amp;a[i].x,&amp;a[i].y);
+		d[i].g=0;
+	}
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(d[i].g!=0)continue;
+		int tmp=2147483640,tag;
+		for(int j=i+1;j&lt;=n;j++)
+		{
+			if((Abs(a[j].x-a[i].x)+Abs(a[j].y-a[i].y))/2&lt;tmp)
+			{
+				tmp=(Abs(a[j].x-a[i].x)+Abs(a[j].y-a[i].y))/2;
+				tag=j;
+			}	
+		}
+		d[i].ls=tmp;
+		d[i].g=tag;
+		d[tag].ls=tmp;
+		d[tag].g=i;
+	}
+	ba[1]=1;
+	int cnt=1;
+	mp[1]=1;
+	int ans=0;
+	while(cnt&lt;n)
+	{
+		int mina=2147483640;
+		int taga;
+		for(int i=1;i&lt;=cnt;i++) 
+		{
+			
+			if(d[ba[i]].ls&lt;mina)
+			{
+				if(mp[d[ba[i]].g]==1)continue;
+				mina=d[ba[i]].ls;
+				taga=d[ba[i]].g;
+			}
+		}
+		mp[taga]=1;
+		ba[++cnt]=taga;
+		if(mina!=2147483640)
+		ans=max(ans,mina);
+	}
+	printf(&quot;%d\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>考场上几乎把所有的错误想法都想过了一遍，最终摸索每一种错解之后走到了类似最小生成树的做法，但因打开方式不对，曼哈顿距离处理挂了</p>
+<p>这道题目不能直接贪心，要用最小生成树的思想连边。赛时想到了类似的想法，但在曼哈顿距离上处理挂了。</p>
+<h2 id="d-2020男人八题循环">D、 【2020男人八题】循环</h2>
+<h3 id="赛时代码3pts">赛时代码：（3pts）</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int Mod=998244353;
+long long a[21];
+int main()
+{
+	long long p;
+	scanf(&quot;%lld&quot;,&amp;p);
+	int n=10;
+	for(int i=0;i&lt;n;i++)
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+	}
+	if(p==3)
+	{
+		long long tmp=a[3]+a[6];
+		printf(&quot;%lld\n&quot;,tmp%Mod);
+	}
+	return 0;
+}
+</code></pre>
+<h3 id="赛后订正100pts-2">赛后订正：(100pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int mod=998244353;
+long long a[15]; 
+bool tag[1000005];
+long long xs[1000005];
+int main()
+{
+	long long n,cnt=0,ans=0,x;
+	scanf(&quot;%lld&quot;,&amp;n);
+	for(int i=0;i&lt;=9;i++) 
+	{
+		scanf(&quot;%lld&quot;,&amp;a[i]);
+	}
+	for(int i=1;i&lt;n;i++)
+	{
+	    if(tag[i]==0)
+	    {
+			int tmp=0;
+			cnt++;
+	    	x=i;
+		    xs[cnt]=1;
+		    while(1) 
+		    {
+				tag[x]=1;
+			    tmp++;
+			    xs[cnt]=xs[cnt]*a[x*10/n]%mod;
+			    x=x*10%n;
+			    if(x==i) 
+					break;
+		    }
+		    xs[cnt]=xs[cnt]*tmp%mod;
+		    ans=(ans+xs[cnt])%mod;
+	    }
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>赛时只考虑了样例的情况，因为没有琢磨透循环节所以只草率的写了极少的部分分。其实即使是骗分的暴力也还是很可做，本应多骗些分。</p>
+<h2 id="e-2020男人八题切割矩形">E. 【2020男人八题】切割矩形</h2>
+<h3 id="赛时代码30pts">赛时代码：(30pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+long long Max(long long qwq,long long qvq)
+{
+	if(qwq&gt;qvq)return qwq;
+	return qvq;
+}
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	long long a,b;
+	while(T--)
+	{
+		scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);
+		long long x1=a,x2=b,y1=b,y2=b;
+		long long ans=0;
+		while(x1!=y1)
+		{
+			if(x1&gt;y1)
+			{
+				long long tmp=x1-(x1/y1)*y1;
+				if(tmp&lt;1)
+				{
+					ans-=(1-tmp)/y1;
+				}
+			ans+=x1/y1;
+			
+			x1=Max(tmp,1);
+			}
+			else
+			{
+				long long z=x1;
+				x1=y1;
+				y1=z;
+			}
+			//printf(&quot;%lld %lld\n&quot;,x1,y1);
+		}
+		printf(&quot;%lld 114514\n&quot;,ans);
+	}
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正100pts-3">赛后订正：(100pts)</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+int mod=1000000007;
+long long res1,res2;
+long long ksm(long long a,long long b)
+{
+	long long tmp=1;
+	for(;b;b/=2,a=a*a%mod)
+	{
+		if(b%2==1)
+		{
+			tmp=tmp*a%mod;
+		}
+	}
+	return tmp;
+}
+void gcd_ex(long long a,long long b)
+{
+	if(b==1)
+	{
+		res1=a-1;
+		res2=0;
+		return ;
+	}
+	gcd_ex(b,a%b);
+	res2=(ksm(2,res1)-res2-1+mod)%mod;
+	res1+=a/b;
+}
+int main()
+{
+	int T;
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)
+	{
+		long long a,b;
+		scanf(&quot;%lld%lld&quot;,&amp;a,&amp;b);
+		gcd_ex(a,b);
+		printf(&quot;%lld %lld\n&quot;,res1,(ksm(2,res1-1)-res2+mod)%mod);
+	}
+	return 0;
+}
+</code></pre>
+<p>这道题在比赛时写了第一个空的解法，看出其和辗转相除法相似的本质，得到了30pts，对整场比赛的个人得分来说算是比较成功的暴力，但没有像初中探究题一样推下去找到第二问的规律比较可惜。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF1389A LCM Problem 题解]]></title>
         <id>https://vipblog.github.io/CF1389A/</id>
@@ -541,78 +1075,6 @@ int main()
 	}
 	return 0;
 } 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF1365C Rotation Matching 题解]]></title>
-        <id>https://vipblog.github.io/oPwX6bNsk/</id>
-        <link href="https://vipblog.github.io/oPwX6bNsk/">
-        </link>
-        <updated>2020-06-08T13:30:54.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="description">description：</h2>
-<ul>
-<li>
-<p>给定两个长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∼</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1\sim n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的排列 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i,b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</p>
-</li>
-<li>
-<p>你可以对任意一个排列进行若干次长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的 <strong>循环右移或左移</strong>；这里的循环移动指每个元素依次向左或右移动 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个，如果移出边界的元素再折回到排列的头或尾。</p>
-</li>
-<li>
-<p>你需要求出在移动过后最多有多少个对应的位置使得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>=</mo><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i=b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</p>
-</li>
-<li>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi>n</mi><mo>≤</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">1\le n\le 2\times 10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>b</mi><mi>i</mi></msub><mo>≤</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1\le a_i,b_i\le n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>。</p>
-</li>
-<li>
-<p>translate by @<a href="https://www.luogu.com.cn/user/45475">ShineEternal</a>。</p>
-</li>
-</ul>
-<h2 id="solution">solution：</h2>
-<p>我们直接在众多种移动方法中保留任意一种其实就行了。</p>
-<p>我们对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span> 中的每个元素，记录其与对应的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span></span></span></span> 中相等的元素所相差的距离，众数即为答案。</p>
-<h2 id="code">code：</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-using namespace std;
-int abs(int x)
-{
-	if(x&lt;0)return -x;
-	return x;
-}
-int max(int x,int y)
-{
-	if(x&gt;y)return x;
-	return y;
-}
-int a[200005],b[200005],dis[200005],mp0[200005],mp[200005];
-int main()
-{
-	int n;
-	scanf(&quot;%d&quot;,&amp;n);
-	for(int i=1;i&lt;=n;i++)
-	{
-		scanf(&quot;%d&quot;,&amp;a[i]);
-		mp0[a[i]]=i;
-	}
-	for(int i=1;i&lt;=n;i++)
-	{
-		scanf(&quot;%d&quot;,&amp;b[i]);
-		mp[b[i]]=i;
-	}
-	for(int i=1;i&lt;=n;i++)
-	{
-		dis[(n+mp0[i]-mp[i])%n]++;
-	}
-	int ans=0;
-	for(int i=1;i&lt;=n;i++)
-	{
-		ans=max(ans,dis[i]);
-	}
-	if(n==1)printf(&quot;1\n&quot;);
-	else
-	printf(&quot;%d\n&quot;,ans);
-	return 0;
-}
 </code></pre>
 ]]></content>
     </entry>
