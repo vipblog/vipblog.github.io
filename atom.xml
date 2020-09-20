@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-09-20T07:51:10.468Z</updated>
+    <updated>2020-09-20T08:28:24.704Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -28,6 +28,7 @@ A:
 设n=N+1; 
 
 先考虑可以枚举哪条边或者哪个点
+
 
 一个想法是枚举左边的边和底边。
 
@@ -380,6 +381,103 @@ int main()
 <h3 id="赛时代码-3">赛时代码：</h3>
 <p>输出了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，并拿到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">10pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>。。。</p>
 <h3 id="赛后订正-3">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+long long mod=998244353;
+map&lt;pair&lt;long long,long long&gt;,long long&gt;id;
+struct edge
+{
+	long long v,w,val;
+};
+vector&lt;edge&gt;e[1000010];
+long long x[1000055],y[1000055],u[1000055],v[1000055],deg[1000055],now,vis[1000055],g[1000055];
+bool check(long long a,long long b,long long c)
+{
+	long long xa=x[a],ya=y[a],xb=x[b],yb=y[b],xc=x[c],yc=c[y];
+	long long vx1=x[b]-x[a],vy1=y[b]-y[a],vx2=x[c]-x[a],vy2=y[c]-y[a],vx3=x[c]-x[b],vy3=y[c]-y[b];
+	if(vx1*vx2+vy1*vy2&lt;=0)return 0;
+	if(vx1*vx3+vy1*vy3&gt;=0)return 0;
+	if(vx2*vx3+vy2*vy3&lt;=0)return 0;
+	return 1;
+}
+long long gcd(long long a,long long b){return b==0?a:gcd(b,a%b);}
+long long calc(long long a,long long b,long long c)
+{
+	long long xa=x[a],ya=y[a],xb=x[b],yb=y[b],xc=x[c],yc=c[y];
+	long long maxy=max(max(ya,yb),yc),miny=min(min(ya,yb),yc);
+	long long maxx=max(max(xa,xb),xc),minx=min(min(xa,xb),xc);
+	long long vx1=x[b]-x[a],vy1=y[b]-y[a],vx2=x[c]-x[a],vy2=y[c]-y[a],vx3=x[c]-x[b],vy3=y[c]-y[b];
+	vx1=abs(vx1);vx2=abs(vx2);vx3=abs(vx3);vy1=abs(vy1);vy2=abs(vy2);vy3=abs(vy3);
+	long long s=2*(maxx-minx)*(maxy-miny)-vx1*vy1-vx2*vy2-vx3*vy3;
+	return s;
+}
+int main()
+{
+	long long n;
+	scanf(&quot;%lld&quot;,&amp;n);
+	long long xa,ya,xb,yb;
+	for(long long i=1;i&lt;=n;i++)
+	{
+		scanf(&quot;%lld%lld%lld%lld&quot;,&amp;xa,&amp;ya,&amp;xb,&amp;yb);
+		pair&lt;long long,long long&gt;a=make_pair(xa,ya),b=make_pair(xb,yb);
+		if(!id[a])id[a]=++now,x[now]=xa,y[now]=ya;
+		if(!id[b])id[b]=++now,x[now]=xb,y[now]=yb;
+		u[i]=id[a],v[i]=id[b];
+		deg[u[i]]++,deg[v[i]]++;
+	}
+	for(long long i=1;i&lt;=n;i++)
+	{
+		if(deg[u[i]]&gt;deg[v[i]])swap(u[i],v[i]);
+		else if(deg[u[i]]==deg[v[i]])
+		{
+			if(x[u[i]]&gt;x[v[i]])swap(u[i],v[i]);
+			else if(x[u[i]]==x[v[i]])
+			{
+				if(y[u[i]]&gt;y[v[i]])swap(u[i],v[i]);
+			}
+		}
+		e[u[i]].push_back((edge){v[i],gcd(abs(x[u[i]]-x[v[i]]),abs(y[u[i]]-y[v[i]]))});
+	}
+	for(long long i=1;i&lt;=n;i++)
+	{
+		for(auto j:e[i])vis[j.v]++;
+		for(auto &amp;j:e[i])
+		{
+			j.val=vis[j.v];
+			vis[j.v]=0;
+		}
+	}
+	long long cnt=0;
+	long long ans=0;
+	for(long long i=1;i&lt;=now;i++)
+	{
+		for(auto j:e[i])vis[j.v]++,g[j.v]=gcd(abs(x[i]-x[j.v]),abs(y[i]-y[j.v]));
+		for(auto j:e[i])
+		{
+			if(!j.val)continue;
+			for(auto k:e[j.v])
+			{
+				if(!k.val)continue;
+				if(vis[k.v])
+				{
+					if(check(i,j.v,k.v))
+					{
+						ans+=((calc(i,j.v,k.v)-g[j.v]-g[k.v]-k.w+2)/2)%mod*vis[k.v]%mod*j.val%mod*k.val,ans%=mod;
+					}
+				}
+			}
+		}
+		for(auto j:e[i])vis[j.v]--;
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>赛时一看到要求三角形内的整点的数量就挺懵，赛后一查是个pick定理。发现这是一个挺有用的tip就学了一下。然后在找三角形时，连着找三条边肯定超时，那么稍微简化一下可以找两条边，剩下一条存好等着用就行，但还是T。所以又get了一个新科技：三元环计数。时间复杂度是线性×log级别的，所以并不会超时。</p>
 <h2 id="day2-a捕梦网">day2 A：捕梦网</h2>
 <h3 id="赛时代码-4">赛时代码：</h3>
 <pre><code class="language-cpp">/*A:zxscs?
