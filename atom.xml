@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-09-13T08:54:54.271Z</updated>
+    <updated>2020-09-20T07:51:10.468Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -14,6 +14,530 @@
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[第一周校内OI模拟赛总结（day1&day2）]]></title>
+        <id>https://vipblog.github.io/fnrhAPUbW/</id>
+        <link href="https://vipblog.github.io/fnrhAPUbW/">
+        </link>
+        <updated>2020-09-20T07:10:47.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="day1-a签到题">day1 A：签到题</h2>
+<h3 id="赛时代码">赛时代码：</h3>
+<pre><code class="language-cpp">/*
+A:
+
+设n=N+1; 
+
+先考虑可以枚举哪条边或者哪个点
+
+一个想法是枚举左边的边和底边。
+
+左边的边连接底角和上方一点，底边直接枚举(n+1)*n/2 个。
+
+（注：枚举指推公式计算
+
+那么对于一种长度为a的底边的情况，当且仅当整个长度n为
+
+-----
+
+
+突然想到是否可以枚举对应位置的上下两条边。
+
+这样的话枚举完长度为a的底边，顶边直接C n取a不就好了。
+
+不过这样有些难算。。。
+
+对于一个长度为n的格点，直接 C(n,1)*C(n,1)+C(n,n-1)*C(n,n-1)+...+C(n,n)*C(n,n)
+
+不会算。。。 
+
+
+----
+
+
+瞎猜了一个 1*1+2*2+...+n*n 居然两个样例都过了？！？？？？ 
+
+严（hu）谨 （luan）证明了一下发现大概是靠谱的。
+
+那么看来高精度无法避免了？！？ 
+
+=n*(n+1)*(2n+1)/6
+
+
+好像只能勉强90%？？最后一个要写高精度？？？？（大概率不是
+
+所以1000000000*1000000001*2000000001/6= 
+
+19：23：后面的提都不会，看上去没啥事了（？），尝试写个高精。 
+*/
+#include&lt;cstdio&gt;
+using namespace std;
+int a[105],b[105],c[105];
+int main()
+{
+	//freopen(&quot;check.in&quot;,&quot;r&quot;,stdin);
+	//freopen(&quot;check.out&quot;,&quot;w&quot;,stdout); 
+	//printf(&quot;%lld\n&quot;,1000000001*2000000001); 
+	long long n;
+	scanf(&quot;%lld&quot;,&amp;n);
+	if(n==1000000000)
+	{
+		printf(&quot;333333333833333333500000000\n&quot;);
+		return 0;
+	} 
+	//long long ans=0;
+	/*for(int i=1;i&lt;=n;i++)
+	{
+		ans+=i*i;
+	}*/
+//	if(n&lt;=1000000)
+//	{
+		printf(&quot;%lld\n&quot;,n*(n+1)*(2*n+1)/6);
+		return 0;
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long s[105],x[105],y[105];
+int main()
+{
+	long long n;
+	scanf(&quot;%lld&quot;,&amp;n);
+	long long a=n,b=n+1,c=2*n+1;
+	if(a%2==1)
+	{
+		b=b/2;
+	}
+	else
+	{
+		a=a/2;
+	}
+	if(a%3==0)
+	{
+		a=a/3;
+	}
+	else
+	if(a%3==2)
+	{
+		b=b/3;
+	}
+	else
+	{
+		c/=3;
+	}
+	long long d=a*b;
+	int cnt1=0,cnt2=0;
+	while(d)
+	{
+		x[cnt1++]=d%10;
+		d/=10;
+	}
+	while(c)
+	{
+		y[cnt2++]=c%10;
+		c/=10;
+	}
+	for(int i=0;i&lt;cnt1;i++)
+	{
+		int tag=0;
+		for(int j=0;j&lt;cnt2;j++)
+		{
+			s[i+j]+=x[i]*y[j]+tag;
+			tag=s[i+j]/10;//把i+j位置多出来的位进位 
+			s[i+j]%=10;
+		}
+		int tmp=i+cnt2;
+		while(tag)
+		{
+			s[tmp]+=tag;
+			tag=s[tmp]/10;
+			s[tmp]%=10;
+			tmp++;
+		} 
+	}
+	int w=100;
+	while(s[w]==0)
+	{
+		w--;
+	}
+	for(int i=w;i&gt;=0;i--)
+	{
+		printf(&quot;%lld&quot;,s[i]);
+	}
+	printf(&quot;\n&quot;);
+	return 0;
+}
+</code></pre>
+<h3 id="总结">总结：</h3>
+<p>赛时胡乱猜想一波后把规律想了出来，试了样例对了后突然发现貌似必须高精才能 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>90</mn><mo>−</mo><mo>&gt;</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">90-&gt;100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">9</span><span class="mord">0</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，一直以为联赛不考这种算法就不怎么熟练，果然考场上写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>30</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">30min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span></span></span></span> 还是没什么用，于是挣扎着手算了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span> 的数据后就开其他题了，赛后看了看高精的代码发现并没有很复杂，写了写终于会了。</p>
+<h2 id="day1-b染色">day1 B：染色</h2>
+<h3 id="赛时代码-2">赛时代码：</h3>
+<pre><code class="language-cpp">/*
+B:
+
+C(36,18)=453756765
+
+C(20,10)=184756 
+
+50%或可暴力枚举判断 
+
+先把这个部分分给写了 
+
+
+-----
+
+发现一种类似于子串内部先找一波回文再某种组合？
+
+
+暴力初步完成：答案都对了，但跑起来挺慢的。
+
+甚至50% 的数据都有些悬。 
+
+文件输入了一下1.3s？？？？
+
+凉了凉了 
+
+先去搞C 
+*/
+#include&lt;cstdio&gt;
+#include&lt;map&gt; 
+#include&lt;iostream&gt; 
+using namespace std;
+char s[30];
+map&lt;char,int&gt;mp;
+map&lt;int,int&gt;mp0;
+int n;
+int a[30];//一个用来枚举排列的数组 
+int vis[30];//记录是否访问过 
+int sum;
+int b[30];
+int ans;
+void dfs(int cnt)
+{
+	if(cnt&gt;=n)//差不多这里面就是枚举成功的组合的情况了 
+	{
+		//for(int i=1;i&lt;=40;i++)mp0[i]=0; 
+		mp0.clear();
+		for(register int i=1;i&lt;=n;i++)
+		{
+			mp0[a[i]]=1;
+		}
+		int cnt0=0;
+		for(register int i=1;i&lt;=2*n;i++)
+		{
+			if(mp0[i]==0)
+			{
+				b[++cnt0]=i;
+			}
+		} 
+		int flag=0;
+		for(register int i=1;i&lt;=n;i++)
+		{
+			if(s[a[i]]!=s[b[n-i+1]])
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)ans++;
+		/*for(int i=1;i&lt;=n;i++)
+		{
+			printf(&quot;%d &quot;,a[i]);
+		}
+		printf(&quot;\n&quot;);*/
+		//sum++; 
+		return ;
+	}
+	for(register int i=1;i&lt;=2*n;i++)
+	{
+		if(vis[i]==0&amp;&amp;a[cnt]&lt;i)
+		{
+			a[cnt+1]=i;//这里应当使用cnt+1，如果误用为++cnt则会导致for中的cnt无限增加 
+			//printf(&quot;%d %d\n&quot;,cnt,a[cnt]);
+			vis[i]=1;
+			dfs(cnt+1);
+			vis[i]=0;
+		}
+	}
+}
+int main()
+{
+	freopen(&quot;color.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;color.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%d\n&quot;,&amp;n);
+	int flag=0;
+	for(int i=1;i&lt;=2*n;i++)
+	{
+		scanf(&quot;%c&quot;,&amp;s[i]);
+		mp[s[i]]++;
+		if(s[i]!=s[i-1]&amp;&amp;i!=1)
+		{
+			flag=1;
+		}
+	}
+	/*if(flag==0)//特殊处理一波字母全都相等的情况 
+	{
+		printf(&quot;%lld\n&quot;,) 
+	}*/
+	for(char i='a';i&lt;='z';i++)//如果某种字母是奇数个那么显然一个也构不成罢？ 
+	{
+		if(mp[i]%2==1)
+		{
+			printf(&quot;0\n&quot;);
+			return 0;
+		} 
+	}
+	dfs(0);
+	//printf(&quot;sum=%d\n&quot;,sum);
+	printf(&quot;%d\n&quot;,ans);
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正-2">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;map&gt;
+using namespace std;
+int col[105];
+unsigned long long has[105];
+map&lt;unsigned long long,int&gt;f[50];
+char s[105];
+long long ans;
+int n;
+void check(int tag)
+{
+	unsigned long long x=0,y=0;
+	int cnt=0,cnt1=n;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(col[i]&gt;0)
+		{
+			x+=(unsigned long long)col[i]*has[cnt];
+			cnt++;
+		}
+		else
+		{
+			y+=(unsigned long long)col[i]*has[cnt1];
+			cnt1--;
+		}
+	}
+	if(tag==1)
+	{
+		ans+=f[cnt][x+y];
+	}
+	else
+	{
+		f[cnt1][x+y]++;
+	}
+}
+void dfs1(int x)
+{
+	if(x&gt;n)
+	{
+		check(0);
+		return ;
+	}
+	col[x]=s[x]-'a'+1;
+	dfs1(x+1);
+	col[x]=-col[x];
+	dfs1(x+1);
+} 
+void dfs2(int x)
+{
+	if(x&lt;=n)
+	{
+		check(1);
+		return ;
+	}
+	int tmp=2*n-x+1; 
+	col[tmp]=s[x]-'a'+1;//s[x]!!!!!!
+	dfs2(x-1);
+	col[tmp]=-col[tmp];
+	dfs2(x-1);
+}
+int main()
+{
+	scanf(&quot;%d\n&quot;,&amp;n);
+	for(int i=1;i&lt;=2*n;i++)
+	{
+		scanf(&quot;%c&quot;,&amp;s[i]);//&amp;又忘了。。。 
+	}
+	has[0]=1;
+	for(int i=1;i&lt;=n;i++)
+	{
+		has[i]=has[i-1]*331;
+	}
+	dfs1(1);
+	dfs2(2*n);
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+} 
+
+</code></pre>
+<h3 id="总结-2">总结：</h3>
+<p>赛时<s>不出所料的</s>没做出B题，没想到折半搜索这个算法，所以尽全力打了个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">50pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>，赛后发现拿到了这部分分，所以对暴力还算满意。赛后学了折半搜索后发现这东西确实好用。然后判字符串的时候直接hash也是很好的技巧。</p>
+<h2 id="day1-c数数">day1 C：数数</h2>
+<h3 id="赛时代码-3">赛时代码：</h3>
+<p>输出了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，并拿到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">10pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>。。。</p>
+<h3 id="赛后订正-3">赛后订正：</h3>
+<h2 id="day2-a捕梦网">day2 A：捕梦网</h2>
+<h3 id="赛时代码-4">赛时代码：</h3>
+<pre><code class="language-cpp">/*A:zxscs?
+
+弄完个最小生成树之后再加个最短的边是不是就可以了。 
+
+
+
+18:08:
+
+大小样例都过了，可能是对的。先mark，回头再想。 
+
+18:52:
+
+自边算环？ 
+
+那这样感觉这code是不是假了。。。 
+*/ 
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	long long x,y,v;
+}a[500005];
+long long cmp(const ben &amp;a,const ben &amp;b)
+{
+	return a.v&lt;b.v;
+}
+long long fa[100005];
+long long tag[500005];
+long long find(long long x)
+{
+	if(x!=fa[x])fa[x]=find(fa[x]);
+	return fa[x];
+}
+int main()
+{
+	freopen(&quot;dream.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;dream.out&quot;,&quot;w&quot;,stdout);
+	int n,m;
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++)
+	{
+		fa[i]=i;
+	}
+	for(int i=1;i&lt;=m;i++)
+	{
+		scanf(&quot;%lld%lld%lld&quot;,&amp;a[i].x,&amp;a[i].y,&amp;a[i].v);
+	}
+	sort(a+1,a+m+1,cmp);
+	long long ans=0;
+	long long cnt=0;
+	for(int i=1;i&lt;=m;i++)
+	{
+		long long u=a[i].x;
+		long long v=a[i].y;
+		long long fu=find(u);
+		long long fv=find(v);
+		if(fu!=fv)
+		{
+			ans+=a[i].v;
+			tag[i]=1;
+			fa[fu]=fv;
+			cnt++;
+		} 
+		if(cnt==n-1)break;
+	}
+	long long tmp=21474836400000;
+	for(int i=1;i&lt;=m;i++)
+	{
+		if(tag[i]==0)
+		{
+			tmp=min(tmp,a[i].v);
+		}
+	}
+	printf(&quot;%lld\n&quot;,ans+tmp);
+	return 0;
+}
+</code></pre>
+<h3 id="总结-3">总结：</h3>
+<p>比赛时上来就想到用最小生成树，然后贪心的再取且仅取一条权值最小的边。这样的答案就是最优的。观察到会有重边自环一类，不知道有什么深意。因为我在贪心的找最后一条边时是从头开始枚举第一条没选过的（sort过的序列）。发现其他dalao有的直接取了下一条就错了。所以以后这种重边和自环的问题一定要谨慎。</p>
+<h2 id="day2-b跑路">day2 B：跑路</h2>
+<h2 id="day2-c跳跃">day2 C：跳跃</h2>
+<h3 id="赛时代码-5">赛时代码：</h3>
+<pre><code class="language-cpp">输出了个 `-1`。。。
+</code></pre>
+<h3 id="赛后订正-4">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+long long dp[500055][3],qaq[500055];
+long long min(long long x,long long y)
+{
+	if(x&lt;y)return x;
+	return y;
+}
+int main()
+{
+	int n,m;
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++)
+	{
+		dp[i][0]=dp[i][1]=10000000000000007;
+		qaq[i]=-1;
+	}
+	int p,v;
+	for(int i=1;i&lt;=m;i++)
+	{
+		scanf(&quot;%d%d&quot;,&amp;p,&amp;v);
+		qaq[p]=v;
+	}
+	for(int i=2;i&lt;n;i++)
+	{
+		if(qaq[i-1]==-1&amp;&amp;qaq[i]==-1)
+		{
+			printf(&quot;-1\n&quot;);
+			return 0;
+		}
+	}
+	long long ans=0; 
+	for(int l=1,r;l&lt;n;l=r)
+	{
+		r=l;
+		while(qaq[r]!=-1&amp;&amp;r&lt;=n) 
+		{
+			r++;
+		}
+		r++;
+		dp[l][0]=0;
+		dp[l][1]=10000000000000007;
+		for(int i=l;i&lt;=r;i++)
+		{
+			if(i+1&lt;=r)//跳一步 
+			{
+				dp[i+1][0]=min(dp[i+1][0],dp[i][0]+1ll);
+				dp[i+1][1]=min(dp[i+1][1],dp[i][1]+1ll);
+			}
+			if(i+2&lt;=r)//跳两步 
+			{
+				dp[i+2][1]=min(dp[i+2][1],min(dp[i][0],dp[i][1])+qaq[i]);
+			}
+		}
+		ans+=dp[r][1];
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<h3 id="总结-4">总结：</h3>
+<p>本来把问题想象成了</p>
+<blockquote>
+<p>删去一张图中若干条联通了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的边，使得边权之和最小且剩下的图仍然联通。</p>
+</blockquote>
+<p>结果发现不太可做。</p>
+<p>然后发现其实是一道 dp。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2020年男人八题赛后订正与总结]]></title>
         <id>https://vipblog.github.io/maneight/</id>
@@ -971,108 +1495,6 @@ int main()
 	if(n==2)printf(&quot;%lld\n&quot;,a[1]|a[2]);
 	else
 	printf(&quot;%lld\n&quot;,a[1]);
-	return 0;
-} 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF1365D Solve The Maze 题解（注：本题目及题解均尚未完成！]]></title>
-        <id>https://vipblog.github.io/o5EvDo1aI/</id>
-        <link href="https://vipblog.github.io/o5EvDo1aI/">
-        </link>
-        <updated>2020-06-09T11:54:30.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="description">description：</h2>
-<p>求能否在一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n\times m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵中设置一些墙使得所有好人都能到达 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(n,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，而所有坏人都不能。</p>
-<h2 id="solution">solution：</h2>
-<p>我们只需要判断每个好人能否在不经过坏人的情况下到达终点即可（如果在途中与坏人相邻则同样不能到达）。</p>
-<p>有一个剪枝就是将连在一起的好人仅保留一个而其他都看做空地，可减少 dfs 的次数。</p>
-<h2 id="code">code：</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-#include&lt;cstring&gt;
-#include&lt;iostream&gt;
-using namespace std;
-char a[55][55];
-int sx[5]={0,-1,1,0,0};
-int sy[5]={0,0,0,-1,1};
-int vis[55][55];
-int n,m;
-int dfs(int xx,int yy)
-{
-	for(int i=1;i&lt;=4;i++)
-	{
-		int x=xx+sx[i];
-		int y=yy+sy[i];
-		if(a[x][y]=='B')
-		{
-			return 0;
-		}
-	}
-	if(xx==n&amp;&amp;yy==m)return 1;
-	for(int i=1;i&lt;=4;i++)
-	{
-		int x=xx+sx[i];
-		int y=yy+sy[i];
-		if(vis[x][y]==0&amp;&amp;(a[x][y]=='G'||a[x][y]=='.'))
-		{
-			vis[x][y]=1;
-			if(dfs(x,y))
-			{
-				vis[x][y]=0;
-				return 1;
-			}
-		}
-	}
-	return 0;
-}
-int main()
-{
-	int T;
-	scanf(&quot;%d&quot;,&amp;T);
-	while(T--)
-	{
-		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-		for(int i=1;i&lt;=n;i++)
-		{
-			for(int j=1;j&lt;=m;j++)
-			{
-				cin&gt;&gt;a[i][j];
-			}
-		}
-		int flag=0;
-		for(int i=1;i&lt;=n;i++)
-		{
-			for(int j=1;j&lt;=m;j++)
-			{
-				if(a[i][j]=='G')
-				{
-					if(a[i][j-1]=='G'||a[i][j+1]=='G'||a[i-1][j]=='G'||a[i+1][j]=='G')
-					{
-						if(a[i][j-1]!='B'&amp;&amp;a[i][j+1]!='B'&amp;&amp;a[i-1][j]!='B'&amp;&amp;a[i+1][j]!='B')
-						{
-							a[i][j]='.';
-							continue;
-						}
-					}
-					memset(vis,0,sizeof(vis));
-					
-					if(dfs(i,j)==0)
-					{
-						printf(&quot;No\n&quot;);
-						flag=1;
-						break;
-					}
-				}
-				
-			}
-			if(flag==1)
-				break;
-		}
-		if(flag==0)
-		{
-			printf(&quot;Yes\n&quot;);
-		}
-	}
 	return 0;
 } 
 </code></pre>

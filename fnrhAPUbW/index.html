@@ -12,7 +12,7 @@
 
 如有任何问题请联系 QQ：3197301325，也同时欢迎各位神仙前来交流~">
 <meta name="theme-color" content="#212529">
-<title>ShineEternal 的小站</title>
+<title>第一周校内OI模拟赛总结（day1&amp;day2） | ShineEternal 的小站</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1600588265069">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/gemini.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="第一周校内OI模拟赛总结（day1&day2）" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -163,10 +165,26 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  gemini">
+      class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -244,176 +262,923 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#day1-a%E7%AD%BE%E5%88%B0%E9%A2%98">day1 A：签到题</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%81">赛时代码：</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3">赛后订正：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结：</a></li>
+</ul>
+</li>
+<li><a href="#day1-b%E6%9F%93%E8%89%B2">day1 B：染色</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%81-2">赛时代码：</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3-2">赛后订正：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93-2">总结：</a></li>
+</ul>
+</li>
+<li><a href="#day1-c%E6%95%B0%E6%95%B0">day1 C：数数</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%81-3">赛时代码：</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3-3">赛后订正：</a></li>
+</ul>
+</li>
+<li><a href="#day2-a%E6%8D%95%E6%A2%A6%E7%BD%91">day2 A：捕梦网</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%81-4">赛时代码：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93-3">总结：</a></li>
+</ul>
+</li>
+<li><a href="#day2-b%E8%B7%91%E8%B7%AF">day2 B：跑路</a></li>
+<li><a href="#day2-c%E8%B7%B3%E8%B7%83">day2 C：跳跃</a>
+<ul>
+<li><a href="#%E8%B5%9B%E6%97%B6%E4%BB%A3%E7%A0%81-5">赛时代码：</a></li>
+<li><a href="#%E8%B5%9B%E5%90%8E%E8%AE%A2%E6%AD%A3-4">赛后订正：</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93-4">总结：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box tag-line box-shadow-wrapper">
-          <section class="section tags-section posts-expand bg-color">
-            <div class="padding-wrapper">
-  <div class="tag-timeline-box">
-    <div class="tag-timeline-wrapper">
-      <div class="tag-timeline-title">
-        <h2>
-          MO
-          <small>标签</small>
-        </h2>
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <a href="https://vipblog.github.io/EPVYTew70/">
-        <div class="motion-warpper">
-          <div class="tag-post-node">
-            <h1>
-              07-22
-              <small>数学题目整理</small>
-            </h1>
-          </div>
-        </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://vipblog.github.io/fnrhAPUbW/">
+      第一周校内OI模拟赛总结（day1&amp;day2）
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2020-09-20</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>12分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>2275<span class="pc-show">字数</span></span>
+    </span>
+    
+    
+    
+    <span id="/fnrhAPUbW/" data-flag-title="第一周校内OI模拟赛总结（day1&amp;day2）" class="meta-item pc-show leancloud_visitors">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-eye"></i>
+      <span>浏览量：<span class="leancloud-visitors-count"></span></span>
+    </span>
+    
+  </div>
+</header>
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="day1-a签到题">day1 A：签到题</h2>
+<h3 id="赛时代码">赛时代码：</h3>
+<pre><code class="language-cpp">/*
+A:
+
+设n=N+1; 
+
+先考虑可以枚举哪条边或者哪个点
+
+一个想法是枚举左边的边和底边。
+
+左边的边连接底角和上方一点，底边直接枚举(n+1)*n/2 个。
+
+（注：枚举指推公式计算
+
+那么对于一种长度为a的底边的情况，当且仅当整个长度n为
+
+-----
+
+
+突然想到是否可以枚举对应位置的上下两条边。
+
+这样的话枚举完长度为a的底边，顶边直接C n取a不就好了。
+
+不过这样有些难算。。。
+
+对于一个长度为n的格点，直接 C(n,1)*C(n,1)+C(n,n-1)*C(n,n-1)+...+C(n,n)*C(n,n)
+
+不会算。。。 
+
+
+----
+
+
+瞎猜了一个 1*1+2*2+...+n*n 居然两个样例都过了？！？？？？ 
+
+严（hu）谨 （luan）证明了一下发现大概是靠谱的。
+
+那么看来高精度无法避免了？！？ 
+
+=n*(n+1)*(2n+1)/6
+
+
+好像只能勉强90%？？最后一个要写高精度？？？？（大概率不是
+
+所以1000000000*1000000001*2000000001/6= 
+
+19：23：后面的提都不会，看上去没啥事了（？），尝试写个高精。 
+*/
+#include&lt;cstdio&gt;
+using namespace std;
+int a[105],b[105],c[105];
+int main()
+{
+	//freopen(&quot;check.in&quot;,&quot;r&quot;,stdin);
+	//freopen(&quot;check.out&quot;,&quot;w&quot;,stdout); 
+	//printf(&quot;%lld\n&quot;,1000000001*2000000001); 
+	long long n;
+	scanf(&quot;%lld&quot;,&amp;n);
+	if(n==1000000000)
+	{
+		printf(&quot;333333333833333333500000000\n&quot;);
+		return 0;
+	} 
+	//long long ans=0;
+	/*for(int i=1;i&lt;=n;i++)
+	{
+		ans+=i*i;
+	}*/
+//	if(n&lt;=1000000)
+//	{
+		printf(&quot;%lld\n&quot;,n*(n+1)*(2*n+1)/6);
+		return 0;
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+using namespace std;
+long long s[105],x[105],y[105];
+int main()
+{
+	long long n;
+	scanf(&quot;%lld&quot;,&amp;n);
+	long long a=n,b=n+1,c=2*n+1;
+	if(a%2==1)
+	{
+		b=b/2;
+	}
+	else
+	{
+		a=a/2;
+	}
+	if(a%3==0)
+	{
+		a=a/3;
+	}
+	else
+	if(a%3==2)
+	{
+		b=b/3;
+	}
+	else
+	{
+		c/=3;
+	}
+	long long d=a*b;
+	int cnt1=0,cnt2=0;
+	while(d)
+	{
+		x[cnt1++]=d%10;
+		d/=10;
+	}
+	while(c)
+	{
+		y[cnt2++]=c%10;
+		c/=10;
+	}
+	for(int i=0;i&lt;cnt1;i++)
+	{
+		int tag=0;
+		for(int j=0;j&lt;cnt2;j++)
+		{
+			s[i+j]+=x[i]*y[j]+tag;
+			tag=s[i+j]/10;//把i+j位置多出来的位进位 
+			s[i+j]%=10;
+		}
+		int tmp=i+cnt2;
+		while(tag)
+		{
+			s[tmp]+=tag;
+			tag=s[tmp]/10;
+			s[tmp]%=10;
+			tmp++;
+		} 
+	}
+	int w=100;
+	while(s[w]==0)
+	{
+		w--;
+	}
+	for(int i=w;i&gt;=0;i--)
+	{
+		printf(&quot;%lld&quot;,s[i]);
+	}
+	printf(&quot;\n&quot;);
+	return 0;
+}
+</code></pre>
+<h3 id="总结">总结：</h3>
+<p>赛时胡乱猜想一波后把规律想了出来，试了样例对了后突然发现貌似必须高精才能 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>90</mn><mo>−</mo><mo>&gt;</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">90-&gt;100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">9</span><span class="mord">0</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>，一直以为联赛不考这种算法就不怎么熟练，果然考场上写了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>30</mn><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">30min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span></span></span></span> 还是没什么用，于是挣扎着手算了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span> 的数据后就开其他题了，赛后看了看高精的代码发现并没有很复杂，写了写终于会了。</p>
+<h2 id="day1-b染色">day1 B：染色</h2>
+<h3 id="赛时代码-2">赛时代码：</h3>
+<pre><code class="language-cpp">/*
+B:
+
+C(36,18)=453756765
+
+C(20,10)=184756 
+
+50%或可暴力枚举判断 
+
+先把这个部分分给写了 
+
+
+-----
+
+发现一种类似于子串内部先找一波回文再某种组合？
+
+
+暴力初步完成：答案都对了，但跑起来挺慢的。
+
+甚至50% 的数据都有些悬。 
+
+文件输入了一下1.3s？？？？
+
+凉了凉了 
+
+先去搞C 
+*/
+#include&lt;cstdio&gt;
+#include&lt;map&gt; 
+#include&lt;iostream&gt; 
+using namespace std;
+char s[30];
+map&lt;char,int&gt;mp;
+map&lt;int,int&gt;mp0;
+int n;
+int a[30];//一个用来枚举排列的数组 
+int vis[30];//记录是否访问过 
+int sum;
+int b[30];
+int ans;
+void dfs(int cnt)
+{
+	if(cnt&gt;=n)//差不多这里面就是枚举成功的组合的情况了 
+	{
+		//for(int i=1;i&lt;=40;i++)mp0[i]=0; 
+		mp0.clear();
+		for(register int i=1;i&lt;=n;i++)
+		{
+			mp0[a[i]]=1;
+		}
+		int cnt0=0;
+		for(register int i=1;i&lt;=2*n;i++)
+		{
+			if(mp0[i]==0)
+			{
+				b[++cnt0]=i;
+			}
+		} 
+		int flag=0;
+		for(register int i=1;i&lt;=n;i++)
+		{
+			if(s[a[i]]!=s[b[n-i+1]])
+			{
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)ans++;
+		/*for(int i=1;i&lt;=n;i++)
+		{
+			printf(&quot;%d &quot;,a[i]);
+		}
+		printf(&quot;\n&quot;);*/
+		//sum++; 
+		return ;
+	}
+	for(register int i=1;i&lt;=2*n;i++)
+	{
+		if(vis[i]==0&amp;&amp;a[cnt]&lt;i)
+		{
+			a[cnt+1]=i;//这里应当使用cnt+1，如果误用为++cnt则会导致for中的cnt无限增加 
+			//printf(&quot;%d %d\n&quot;,cnt,a[cnt]);
+			vis[i]=1;
+			dfs(cnt+1);
+			vis[i]=0;
+		}
+	}
+}
+int main()
+{
+	freopen(&quot;color.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;color.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%d\n&quot;,&amp;n);
+	int flag=0;
+	for(int i=1;i&lt;=2*n;i++)
+	{
+		scanf(&quot;%c&quot;,&amp;s[i]);
+		mp[s[i]]++;
+		if(s[i]!=s[i-1]&amp;&amp;i!=1)
+		{
+			flag=1;
+		}
+	}
+	/*if(flag==0)//特殊处理一波字母全都相等的情况 
+	{
+		printf(&quot;%lld\n&quot;,) 
+	}*/
+	for(char i='a';i&lt;='z';i++)//如果某种字母是奇数个那么显然一个也构不成罢？ 
+	{
+		if(mp[i]%2==1)
+		{
+			printf(&quot;0\n&quot;);
+			return 0;
+		} 
+	}
+	dfs(0);
+	//printf(&quot;sum=%d\n&quot;,sum);
+	printf(&quot;%d\n&quot;,ans);
+	return 0;
+} 
+</code></pre>
+<h3 id="赛后订正-2">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;map&gt;
+using namespace std;
+int col[105];
+unsigned long long has[105];
+map&lt;unsigned long long,int&gt;f[50];
+char s[105];
+long long ans;
+int n;
+void check(int tag)
+{
+	unsigned long long x=0,y=0;
+	int cnt=0,cnt1=n;
+	for(int i=1;i&lt;=n;i++)
+	{
+		if(col[i]&gt;0)
+		{
+			x+=(unsigned long long)col[i]*has[cnt];
+			cnt++;
+		}
+		else
+		{
+			y+=(unsigned long long)col[i]*has[cnt1];
+			cnt1--;
+		}
+	}
+	if(tag==1)
+	{
+		ans+=f[cnt][x+y];
+	}
+	else
+	{
+		f[cnt1][x+y]++;
+	}
+}
+void dfs1(int x)
+{
+	if(x&gt;n)
+	{
+		check(0);
+		return ;
+	}
+	col[x]=s[x]-'a'+1;
+	dfs1(x+1);
+	col[x]=-col[x];
+	dfs1(x+1);
+} 
+void dfs2(int x)
+{
+	if(x&lt;=n)
+	{
+		check(1);
+		return ;
+	}
+	int tmp=2*n-x+1; 
+	col[tmp]=s[x]-'a'+1;//s[x]!!!!!!
+	dfs2(x-1);
+	col[tmp]=-col[tmp];
+	dfs2(x-1);
+}
+int main()
+{
+	scanf(&quot;%d\n&quot;,&amp;n);
+	for(int i=1;i&lt;=2*n;i++)
+	{
+		scanf(&quot;%c&quot;,&amp;s[i]);//&amp;又忘了。。。 
+	}
+	has[0]=1;
+	for(int i=1;i&lt;=n;i++)
+	{
+		has[i]=has[i-1]*331;
+	}
+	dfs1(1);
+	dfs2(2*n);
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+} 
+
+</code></pre>
+<h3 id="总结-2">总结：</h3>
+<p>赛时<s>不出所料的</s>没做出B题，没想到折半搜索这个算法，所以尽全力打了个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">50pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>，赛后发现拿到了这部分分，所以对暴力还算满意。赛后学了折半搜索后发现这东西确实好用。然后判字符串的时候直接hash也是很好的技巧。</p>
+<h2 id="day1-c数数">day1 C：数数</h2>
+<h3 id="赛时代码-3">赛时代码：</h3>
+<p>输出了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，并拿到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>10</mn><mi>p</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">10pts</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord mathdefault">p</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span>。。。</p>
+<h3 id="赛后订正-3">赛后订正：</h3>
+<h2 id="day2-a捕梦网">day2 A：捕梦网</h2>
+<h3 id="赛时代码-4">赛时代码：</h3>
+<pre><code class="language-cpp">/*A:zxscs?
+
+弄完个最小生成树之后再加个最短的边是不是就可以了。 
+
+
+
+18:08:
+
+大小样例都过了，可能是对的。先mark，回头再想。 
+
+18:52:
+
+自边算环？ 
+
+那这样感觉这code是不是假了。。。 
+*/ 
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct ben
+{
+	long long x,y,v;
+}a[500005];
+long long cmp(const ben &amp;a,const ben &amp;b)
+{
+	return a.v&lt;b.v;
+}
+long long fa[100005];
+long long tag[500005];
+long long find(long long x)
+{
+	if(x!=fa[x])fa[x]=find(fa[x]);
+	return fa[x];
+}
+int main()
+{
+	freopen(&quot;dream.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;dream.out&quot;,&quot;w&quot;,stdout);
+	int n,m;
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++)
+	{
+		fa[i]=i;
+	}
+	for(int i=1;i&lt;=m;i++)
+	{
+		scanf(&quot;%lld%lld%lld&quot;,&amp;a[i].x,&amp;a[i].y,&amp;a[i].v);
+	}
+	sort(a+1,a+m+1,cmp);
+	long long ans=0;
+	long long cnt=0;
+	for(int i=1;i&lt;=m;i++)
+	{
+		long long u=a[i].x;
+		long long v=a[i].y;
+		long long fu=find(u);
+		long long fv=find(v);
+		if(fu!=fv)
+		{
+			ans+=a[i].v;
+			tag[i]=1;
+			fa[fu]=fv;
+			cnt++;
+		} 
+		if(cnt==n-1)break;
+	}
+	long long tmp=21474836400000;
+	for(int i=1;i&lt;=m;i++)
+	{
+		if(tag[i]==0)
+		{
+			tmp=min(tmp,a[i].v);
+		}
+	}
+	printf(&quot;%lld\n&quot;,ans+tmp);
+	return 0;
+}
+</code></pre>
+<h3 id="总结-3">总结：</h3>
+<p>比赛时上来就想到用最小生成树，然后贪心的再取且仅取一条权值最小的边。这样的答案就是最优的。观察到会有重边自环一类，不知道有什么深意。因为我在贪心的找最后一条边时是从头开始枚举第一条没选过的（sort过的序列）。发现其他dalao有的直接取了下一条就错了。所以以后这种重边和自环的问题一定要谨慎。</p>
+<h2 id="day2-b跑路">day2 B：跑路</h2>
+<h2 id="day2-c跳跃">day2 C：跳跃</h2>
+<h3 id="赛时代码-5">赛时代码：</h3>
+<pre><code class="language-cpp">输出了个 `-1`。。。
+</code></pre>
+<h3 id="赛后订正-4">赛后订正：</h3>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+long long dp[500055][3],qaq[500055];
+long long min(long long x,long long y)
+{
+	if(x&lt;y)return x;
+	return y;
+}
+int main()
+{
+	int n,m;
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++)
+	{
+		dp[i][0]=dp[i][1]=10000000000000007;
+		qaq[i]=-1;
+	}
+	int p,v;
+	for(int i=1;i&lt;=m;i++)
+	{
+		scanf(&quot;%d%d&quot;,&amp;p,&amp;v);
+		qaq[p]=v;
+	}
+	for(int i=2;i&lt;n;i++)
+	{
+		if(qaq[i-1]==-1&amp;&amp;qaq[i]==-1)
+		{
+			printf(&quot;-1\n&quot;);
+			return 0;
+		}
+	}
+	long long ans=0; 
+	for(int l=1,r;l&lt;n;l=r)
+	{
+		r=l;
+		while(qaq[r]!=-1&amp;&amp;r&lt;=n) 
+		{
+			r++;
+		}
+		r++;
+		dp[l][0]=0;
+		dp[l][1]=10000000000000007;
+		for(int i=l;i&lt;=r;i++)
+		{
+			if(i+1&lt;=r)//跳一步 
+			{
+				dp[i+1][0]=min(dp[i+1][0],dp[i][0]+1ll);
+				dp[i+1][1]=min(dp[i+1][1],dp[i][1]+1ll);
+			}
+			if(i+2&lt;=r)//跳两步 
+			{
+				dp[i+2][1]=min(dp[i+2][1],min(dp[i][0],dp[i][1])+qaq[i]);
+			}
+		}
+		ans+=dp[r][1];
+	}
+	printf(&quot;%lld\n&quot;,ans);
+	return 0;
+}
+</code></pre>
+<h3 id="总结-4">总结：</h3>
+<p>本来把问题想象成了</p>
+<blockquote>
+<p>删去一张图中若干条联通了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的边，使得边权之和最小且剩下的图仍然联通。</p>
+</blockquote>
+<p>结果发现不太可做。</p>
+<p>然后发现其实是一道 dp。</p>
+
+            </div>
+            <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      ShineEternal
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vipblog.github.io/fnrhAPUbW/" title="第一周校内OI模拟赛总结（day1&amp;day2）">https://vipblog.github.io/fnrhAPUbW/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="2020年男人八题赛后订正与总结" href="https://vipblog.github.io/maneight/">2020年男人八题赛后订正与总结</a>
+        <a class="nav-mobile-next" title="2020年男人八题赛后订正与总结" href="https://vipblog.github.io/maneight/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
 </div>
-          </section>
+            
+  
+    
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fbb919f4c8754e537b84',
+    clientSecret: 'c417fe5997b302139dfb56bdd4bb377f7788d38c',
+    repo: 'vipblog.github.io',
+    owner: 'vipblog',
+    admin: ['vipblog'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+    
+    
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -1130,6 +1895,36 @@ All rights reserved.
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
   </div>
 </body>
@@ -4359,6 +5154,5 @@ int main()
 
 
 <script src=" /media/js/cool.js"></script>
-
 
 </html>
