@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://vipblog.github.io</id>
     <title>ShineEternal 的小站</title>
-    <updated>2020-10-03T03:45:18.937Z</updated>
+    <updated>2021-01-07T22:32:58.552Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://vipblog.github.io"/>
     <link rel="self" href="https://vipblog.github.io/atom.xml"/>
@@ -13,7 +13,16 @@
 如有任何问题请联系 QQ：3197301325，也同时欢迎各位神仙前来交流~</subtitle>
     <logo>https://vipblog.github.io/images/avatar.png</logo>
     <icon>https://vipblog.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, ShineEternal 的小站</rights>
+    <rights>All rights reserved 2021, ShineEternal 的小站</rights>
+    <entry>
+        <title type="html"><![CDATA[将博客搬至CSDN]]></title>
+        <id>https://vipblog.github.io/bN_tpOsKr/</id>
+        <link href="https://vipblog.github.io/bN_tpOsKr/">
+        </link>
+        <updated>2021-01-07T22:32:28.000Z</updated>
+        <content type="html"><![CDATA[<p>wefckjlsdkjle</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[第一周校内OI模拟赛总结（day1&day2）]]></title>
         <id>https://vipblog.github.io/fnrhAPUbW/</id>
@@ -1541,58 +1550,6 @@ int main()
 			printf(&quot;Yes\n&quot;);
 		}
 	}
-	return 0;
-} 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF1365E Maximum Subsequence Value 题解]]></title>
-        <id>https://vipblog.github.io/Q26F2-_0P/</id>
-        <link href="https://vipblog.github.io/Q26F2-_0P/">
-        </link>
-        <updated>2020-06-09T13:37:59.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="description">description：</h2>
-<figure data-type="image" tabindex="1"><img src="https://vipblog.github.io/post-images/1591709941589.jpg" alt="" loading="lazy"></figure>
-<h2 id="solution">solution：</h2>
-<p>这道题目刚开始乍一看并无思路（包括但不限于我太菜），不过仔细分析一下，我们可以<strong>贪心的只选择三个数</strong>。</p>
-<p>为什么选择三个数一定是最优的呢？（当然如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n=1/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 的时候分别选 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 个)</p>
-<p>我们观察题意，一个十分必要的制约条件是 不少于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo><mrow><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>−</mo><mn>2</mn></mrow></mrow><annotation encoding="application/x-tex">\max{1,k-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span></span></span></span></span> 个数的某一位相同。</p>
-<p>那么当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k=3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 时就成了互不干扰的情况，而如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&gt;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k&gt;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 就需要保证两个甚至更多的数字某一位相同。</p>
-<p>这样的话，比起选择多个数，我们要保障第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 位的贡献能够得到的同时完全可以选择更少的含有这一位的数。（因为要得到这一位的贡献就需要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个数凑起来，而如果要凑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个某一位相同的数完全可以只留下其中一个数。</p>
-<h2 id="code">code：</h2>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-using namespace std;
-long long a[505];
-long long max(long long x,long long y)
-{
-	if(x&lt;y)return y;
-	return x;
-}
-int main()
-{
-	int n;
-	scanf(&quot;%d&quot;,&amp;n);
-	long long ans=0;
-	for(int i=1;i&lt;=n;i++)
-	{
-		scanf(&quot;%lld&quot;,&amp;a[i]);
-	}
-	for(int i=1;i&lt;=n;i++)
-	{
-		for(int j=i+1;j&lt;=n;j++)
-		{
-			for(int k=j+1;k&lt;=n;k++)
-			{
-				ans=max(ans,a[i]|a[j]|a[k]);
-			}
-		}
-	}
-	if(n&gt;=3)printf(&quot;%lld\n&quot;,ans);
-	else
-	if(n==2)printf(&quot;%lld\n&quot;,a[1]|a[2]);
-	else
-	printf(&quot;%lld\n&quot;,a[1]);
 	return 0;
 } 
 </code></pre>
